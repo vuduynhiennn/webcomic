@@ -16,7 +16,7 @@ myOAuth2Client.setCredentials({
   refresh_token: GOOGLE_MAILER_REFRESH_TOKEN
 })
 
-const emailServices = async (email, random_code) => {
+const emailServices = async (email, subject, html ,random_code) => {
     try {
         const myAccessTokenObject = await myOAuth2Client.getAccessToken()
         const myAccessToken = myAccessTokenObject?.token
@@ -34,8 +34,8 @@ const emailServices = async (email, random_code) => {
 
         const mailOptions = {
         to: email, // Gửi đến ai?
-        subject: "Vui lòng nhập mã code sau đây để khôi phục lại mật khẩu", // Tiêu đề email
-        html: `<h3>mã code là : ${random_code}</h3>` // Nội dung email
+        subject: subject, // Tiêu đề email
+        html: html // Nội dung email
         }
         // Gọi hành động gửi email
         await transport.sendMail(mailOptions)
