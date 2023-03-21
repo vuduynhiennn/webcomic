@@ -5,12 +5,12 @@
                 <div class="user-sidebar">
                     <div class="user-menu">
                         <div class="user-menu__avatar">
-                            <img src="/public/image/avatar.jpg" alt="">
+                            <img class="account_image2" src="/public/image/avatar.jpg" alt="">
                         </div>
                         <div class="user-menu__username">
                             <div>
                                 <span>Tài Khoản:</span>
-                                <h3>Maviess10</h3>
+                                <h3 class="account_username">Maviess10</h3>
                             </div>
                         </div>
                         <div class="user-menu__listbar">
@@ -58,26 +58,31 @@
                     <div class="user-page__header">
                         <span>THÔNG TIN TÀI KHOẢN</span>
                     </div>
+
+                    {{#if message}}
+                        <div class="error-message">{{ message }}</div>
+                    {{/if}}
+
                     <div class="row main-page account">
-                        <form class="user-page__account">
+                        <form method="post" class="user-page__account" action="/updateUserinfor">
                             <div class="inf info-name">
                                 <p>Họ Và tên:</p>
-                                <input class="user-input" type="text">
+                                <input name="new_username" class="user-input" type="text">
                             </div>
                             <div class="inf info-gender">
                                 <p>Giới Tính:</p>
-                                <input class="user-input" type="text">
+                                <input name="new_gender" class="user-input" type="text">
                             </div>
                             <div class="inf info-gmail">
                                 <p>gmail:</p>
-                                <input class="user-input" type="text">
+                                <input name="new_email" class="user-input" type="text">
                             </div>
                             <div class="inf info-avatar">
                                 <p>Avatar:</p>
                                 <div>
-                                    <img id="avatar-upload" src="/public/image/avatar.jpg" alt="">
+                                    <img class="account_image" id="avatar-upload" src="/public/image/avatar.jpg" alt="">
                                 </div>
-                                <input type="file" id="changeavt">
+                                <input name="new_avatar" type="file" id="changeavt">
                             </div>
                             <div class="account-change">
                                 <button>Thay Đổi</button>
@@ -91,6 +96,25 @@
         </div>
     </div>
     <script>
+
+         if (cookies) {
+            const parseCoookie = JSON.parse(decodeURIComponent(cookies).split("=")[1])
+            const avtURI = parseCoookie.avatar
+            const username = parseCoookie.username
+            const gmail = parseCoookie.gmail
+
+            const account_image = document.querySelector(".account_image")
+            account_image.src=avtURI
+
+            const account_image2 = document.querySelector(".account_image2")
+            account_image2.src=avtURI
+
+            const account_username = document.querySelector(".account_username")
+            account_username.innerHTML = username
+        
+        }
+
+
         var listbar =  document.getElementById("user-listbar")
         document.getElementById("user-menu__listbar").onclick = function(){
             if(listbar.style.display != "none"){

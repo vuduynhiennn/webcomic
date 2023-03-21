@@ -8,23 +8,29 @@ const authMiddleware = require("../middlewares/auth");
 
 const authRoutes = (app) => {
   // routes for render views
-    router.get("/login", (req, res) => {
-        res.render("login")
-    })
-    router.get("/register", (req, res) => {
-        res.render("register")
-    })
+    router.get("/login", (req, res) => { res.render("login") } )
+    router.get("/register", (req, res) => { res.render("register") })
+
+    router.get("/authEmail", (req, res) => res.render("authEmail"))
+
+
     router.get("/forgetPassword", (req, res) => res.render("forgetPass"))
-    router.get("/user", (req, res) => res.render("User_Detail"))
-    router.get("/account", (req, res) => res.render("Account_Detail"))
+    router.get("/user", authMiddleware, (req, res) => res.render("User_Detail", {cookies: true}))
+    router.get("/account", (req, res) => res.render("Account_Detail",  { cookies: true }))
     router.get("/followcomic", (req, res) => res.render("followcomic_detail"))
-    router.get("/changepassword", (req, res) => res.render("changepassword"))
+    router.get("/changepassword", authMiddleware, (req, res) => res.render("changepassword", { cookies: true}))
 
 
     router.get("/logout", (req, res) => {
         res.render("home", { cookies: false })
     })
   // routing  
+
+    router.post("/change_password", authMiddleware, userServices.change_password)
+
+    router.post("/updateUserinfor", authMiddleware, userServices.updateUserinfor)
+    router.post("/updateUserinforCode", authMiddleware, userServices.updateUserinforCode)
+
     router.post("/verify_email", authMiddleware ,userServices.verify_email)
     router.post("/verify_email_code", authMiddleware ,userServices.verify_email_code)
 
@@ -33,6 +39,7 @@ const authRoutes = (app) => {
 
     router.post("/forgetPassword", userServices.forgetPassword)
     router.post("/forgetPassword/code", userServices.forgetPasswordCode)
+
     return app.use("/", router)
 }
 module.exports = authRoutes
