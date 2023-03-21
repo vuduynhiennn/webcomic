@@ -110,7 +110,7 @@
                 <a href="#">
                     <img class="user_image" src="/public/image/avt.png" alt=""> 
                     <div>
-                        <span>Cá Nhân</span>
+                        <span class="header_username">Cá Nhân</span>
                         <i class="fa-solid fa-caret-down"></i>
                     </div>
                 </a>
@@ -456,10 +456,19 @@
     </div>
 
 <script>
-    const cookies = document.cookie // minh xu li .split(;)
-    const user_image = document.querySelector(".user_image")
-    console.log(decodeURIComponent(cookies).split("=")[1])
+    const cookies = document.cookie
+    if (cookies) {
+        const parseCoookie = JSON.parse(decodeURIComponent(cookies).split("=")[1])
+        const avtURI = parseCoookie.avatar
+        const username = parseCoookie.username
+        const gmail = parseCoookie.gmail
 
+        const user_image = document.querySelector(".user_image")
+        user_image.src=avtURI
+        const header_username = document.querySelector(".header_username")
+        header_username.innerHTML = username
+        
+    }
 
     const logout = () => {
         document.cookie = "credential" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';

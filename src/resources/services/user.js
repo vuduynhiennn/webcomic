@@ -116,23 +116,21 @@ const userServices = {
           
             // generate token
             const identifier = result[0].userid
-            const username = result[0].username
+
+            const usernames = result[0].username
             const gmail = result[0].gmail
             const avatar = result[0].avatar
-
-
             const jwt = require("jsonwebtoken")
             const token = await jwt.sign(identifier, process.env.SECRET)
-
             const credential = {
-                token,
-                username,
-                gmail,
-                avatar
+                token: token,
+                username: usernames,
+                gmail: gmail,
+                avatar: avatar
             }
 
             res.cookie("credential", JSON.stringify(credential))
-   
+            
             return res.redirect("/")
         })
     },
