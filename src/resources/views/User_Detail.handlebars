@@ -5,12 +5,12 @@
                 <div class="user-sidebar">
                     <div class="user-menu">
                         <div class="user-menu__avatar">
-                            <img src="/public/image/avatar.jpg" alt="">
+                            <img class="userdetails_image" src="/public/image/avatar.jpg" alt="">
                         </div>
                         <div class="user-menu__username">
                             <div>
                                 <span>Tài Khoản:</span>
-                                <h3>{{data.username}}</h3>
+                                <h3 class="user_details_username">{{data.username}}</h3>
                             </div>
                         </div>
                         <div class="user-menu__listbar">
@@ -63,7 +63,7 @@
                             
                             <div class="inf info-name">
                                 <p>Họ Và tên:</p>
-                                <span>Thủy Kê Tử</span>
+                                <span class="user_details_username2">Thủy Kê Tử</span>
                             </div>
                             <div class="inf info-gender">
                                 <p>Giới Tính:</p>
@@ -94,7 +94,7 @@
                         </div>
                         <div class="user-page__avt">
                             <div>
-                                <img src="/public/image/avatar.jpg" alt="">
+                                <img class="userdetails_image2" src="/public/image/avatar.jpg" alt="">
                             </div>
                         </div>
                     </div>
@@ -103,14 +103,35 @@
         </div>
     </div>
 
-    <script>
-        var listbar =  document.getElementById("user-listbar")
-  
-        document.getElementById("user-menu__listbar").onclick = function(){
-            if(listbar.style.display != "none"){
-                listbar.style.display = "none"
-            }else{           
-                listbar.style.display = "block"
-            }
+<script>
+    var listbar =  document.getElementById("user-listbar")
+
+    document.getElementById("user-menu__listbar").onclick = function(){
+        if(listbar.style.display != "none"){
+            listbar.style.display = "none"
+        }else{           
+            listbar.style.display = "block"
         }
-    </script>
+    }
+        const parseCoookie = JSON.parse(decodeURIComponent(cookies).split("=")[1])
+        const avtURI = parseCoookie.avatar
+        const username = parseCoookie.username
+        
+
+        const gmail = parseCoookie.gmail
+
+        const userdetails_image = document.querySelector(".userdetails_image")
+        userdetails_image.src=avtURI
+
+        const userdetails_image2 = document.querySelector(".userdetails_image2")
+        userdetails_image2.src=avtURI
+
+
+        const user_details_username = document.querySelector(".user_details_username")
+        user_details_username.innerHTML = username
+
+
+        const user_details_username2 = document.querySelector(".user_details_username2")
+        user_details_username2.innerHTML = username
+        
+</script>

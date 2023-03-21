@@ -137,6 +137,7 @@ const userServices = {
     logout: (req, res) => {
         req.render("home", {cookies: false})
     },
+
     forgetPassword: (req, res) => {
         const { email } = req.body
         if (!email) {return res.render("forgetPass", { message: "Vui lòng nhập email vào"})}
@@ -164,21 +165,170 @@ const userServices = {
 
             const emailServices = require("../../config/nodemailer");
             emailServices(`${email}`, "Vui lòng nhập code để xác nhận thiết lập lại mật khẩu !" , `mã của bạn là ${randomeCode}`)
+            var currentIdNe = result[0].userid
+            module.exports = currentIdNe
             res.render("forgetPass", { isCode: true, hideEmail: true} )
         })
     },
+
     forgetPasswordCode: (req, res) => {
         const {code } = req.body
+
+        const currentIdNe = require("./user")
+        console.log(currentIdNe)
+
         if (!code) {
             return res.render("forgetPass", {isCode: true, hideEmail: true, message : "vui lòng không để trống"})
         }
-        if (code !=  randomeCode) {
+        if (code != randomeCode) {
             return res.render("forgetPass", {isCode: true, hideEmail: true, message : "mã xác nhận không chính xác"})
+        }   
+        const newPass = randomeCode + (Math.random() + 1).toString(36).substring(7)
+
+        // create connection to mysql
+        const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
+        const mysql = require("mysql");
+
+        const conToDb = mysql.createConnection({
+        host: HOST || "localhost",
+        user: USER || "sa",
+        password: PASSWORD || "123123",
+        database: DATABASE || "QUANLYNHANSU"
+        })
+
+        conToDb.connect((err) => {
+        if (err) throw err;
+        console.log("Connected to mysql")
+        })
+        // query
+        const sql = `UPDATE users SET pass="${newPass}" WHERE userid="${currentIdNe}"`
+        conToDb.query(sql, (err, result) => {
+            if (err) return res.json(err)
+            return res.render("login", {message: `Mật khẩu mới của bạn là: ${newPass}` })
+        })
+
+    },
+    updateUserinfor: (req, res) => {
+        const { new_email } = req.body
+        if (new_email) {
+            // create connection
+            const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
+            const mysql = require("mysql");
+
+            const conToDb = mysql.createConnection({
+            host: HOST || "localhost",
+            user: USER || "sa",
+            password: PASSWORD || "123123",
+            database: DATABASE || "QUANLYNHANSU"
+            })
+
+            conToDb.connect((err) => {
+            if (err) throw err;
+            console.log("Connected to mysql")
+            })
+            // connected
+            const sql = `SELECT gmail FROM users WHERE gmail="${new_email}"`
+            conToDb.query(sql, (err, result) => {
+                if (err) return res.json(err)
+                if (result.length) {
+                    conToDb.end()
+                    return res.render("Account_Detail", { message: "Email đã tồn tại nếu là email của bạn hãy bấm quên mật khẩu, nếu không hãy thử một email khác"})
+                }
+
+                const randomeCodes = Math.floor(Math.random() * (9999 - 2)) + 0
+
+                const emailServices = require("../../config/nodemailer")
+
+                var randomeCodeko = Math.floor(Math.random() * (9999 - 0)) + 0
+                var userEmail = new_email
+                module.exports = {randomeCodeko, userEmail}
+                emailServices(new_email, "Vui lòng xác nhận đây là email của bạn bằng cách nhập mã sau:", `mã của bạn là <b> ${randomeCodeko}</b>`)
+                conToDb.end()
+                return res.redirect("/authEmail")
+            })
+
+        } else {
+            return res.redirect("/account")
+        }
+    },
+    updateUserinforCode: (req, res) => {
+        const {randomeCodeko, userEmail} = require("./user")
+
+        const {currentId} = req.body
+        const {user_code} = req.body;
+
+        console.log(randomeCodeko, user_code)
+
+        if (!user_code) {
+            return res.render("authEmail", { message: "vui lòng nhập mã xác nhận"})
+        
+        }
+        if (randomeCodeko != user_code)  {
+            return res.render("authEmail", { message: "mã xác nhận không chính xác"})
+        }
+        // creat connection 
+        const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
+        const mysql = require("mysql");
+
+        const conToDb = mysql.createConnection({
+        host: HOST || "localhost",
+        user: USER || "sa",
+        password: PASSWORD || "123123",
+        database: DATABASE || "QUANLYNHANSU"
+        })
+
+        conToDb.connect((err) => {
+        if (err) throw err;
+        console.log("Connected to mysql")
+        })
+
+        const sql = `UPDATE users SET gmail="${userEmail}" WHERE userid="${currentId}"`
+        conToDb.query(sql, (err, result) => {
+            if (err) console.log(err)
+            conToDb.end()
+            return res.render("Account_Detail", { message: "Đã cập nhật emmail thành công"})
+        })
+    }, 
+    change_password: (req, res) => {
+        const { currentPass, newPass, confirmPass, currentId } = req.body
+
+        if (!currentPass || !newPass || !confirmPass) {
+            return res.render("changepassword", {message: "không được để trống"})
         }
 
-        // developing
-
-        return res.redirect("/")
+        // create connection to mysql
+        const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
+        const mysql = require("mysql");
+        const conToDb = mysql.createConnection({
+            host: HOST || "localhost",
+            user: USER || "sa",
+            password: PASSWORD || "123123",
+            database: DATABASE || "QUANLYNHANSU"
+          })
+          
+          conToDb.connect((err) => {
+            if (err) throw err;
+            console.log("Connected to mysql")
+          })
+        // connected to mysql
+        //query  
+        const sql = `SELECT * FROM users WHERE userid="${currentId}"`
+        conToDb.query(sql, (err, result) => {
+            if (err) return res.json("err")
+            if (result[0].pass == currentPass) {
+                if (newPass == confirmPass) {
+                    const sql = `UPDATE users SET pass="${newPass}" WHERE userid="${currentId}"`
+                    conToDb.query(sql, (err, result) => {
+                        if (err) return res.json(err)
+                        return res.render("changepassword", { message: "thay đổi mật khẩu thành công"})
+                    })
+                } else {
+                    return res.render("changepassword", { message: "Mật khẩu mới và mật khẩu xác nhận không giống nhau tí nào"})
+                }
+            } else {
+                return res.render("changepassword", { message: "Mật khẩu không đúng"})
+            }
+        })
     }
 }
 
