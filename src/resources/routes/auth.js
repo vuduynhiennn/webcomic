@@ -16,13 +16,19 @@ const authRoutes = (app) => {
     })
     router.get("/forgetPassword", (req, res) => res.render("forgetPass"))
 
+    router.get("/logout", (req, res) => {
+        res.render("home", { cookies: false })
+    })
   // routing  
+    router.post("/verify_email", authMiddleware ,userServices.verify_email)
+    router.post("/verify_email_code", authMiddleware ,userServices.verify_email_code)
+
+
     router.post("/register", userServices.register)
     router.post("/login", userServices.login)
 
     router.post("/forgetPassword", userServices.forgetPassword)
     router.post("/forgetPassword/code", userServices.forgetPasswordCode)
-
     return app.use("/", router)
 }
 module.exports = authRoutes

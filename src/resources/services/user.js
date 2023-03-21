@@ -46,6 +46,45 @@ const userServices = {
             })
         })
     },
+    verify_email: (req, res) => {
+        const { email } = req.body;
+
+        // create connection to mysql
+        const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
+        const mysql = require("mysql");
+
+        const conToDb = mysql.createConnection({
+        host: HOST || "localhost",
+        user: USER || "sa",
+        password: PASSWORD || "123123",
+        database: DATABASE || "QUANLYNHANSU"
+        })
+
+        conToDb.connect((err) => {
+        if (err) throw err;
+        console.log("Connected to mysql")
+        })
+
+        // query
+        const sql = `SELECT * FROM users WHERE gmail="${email}"`
+        conToDb.query(sql, (err, result) => {
+            if (err) return res.json({err: err})
+            if (result.length) { return res.json("Email này đã được đăng kí") }
+
+            const emailServices = require("../../config/nodemailer")
+            emailServices(email, `Thư xác nhận thêm email vào tài khoản`, `nhập mã sau để liên kết tài khoản với gmail <b> ${randomeCode} </b>`)
+            conToDb.end()
+            return res.json("ok ")
+        })
+    },
+    verify_email_code: (req, res) => {
+        const { code } = req.body
+        if (!code) { return res.json("vui lòng nhập mã xác nhận") }
+        if (code != randomeCode) { return res.json("mã xác nhận không đúng") }
+        const sql = `INSERT INTO users VALUES ()`
+        /// insert email to user record
+        return res.json("ok")
+    },
     login: async (req, res) => {
         const { username, password } = req.body
 
@@ -85,15 +124,20 @@ const userServices = {
             const jwt = require("jsonwebtoken")
             const token = await jwt.sign(identifier, process.env.SECRET)
 
-            res.cookie("token", token)
-            res.cookie("username", username)
-            res.cookie("gmail", gmail)
-            res.cookie("avatar", avatar)
+            const credential = {
+                token,
+                username,
+                gmail,
+                avatar
+            }
 
-            res.cookie("gmail", "nhienduyvu@gmail.com")
+            res.cookie("credential", JSON.stringify(credential))
    
             return res.redirect("/")
         })
+    },
+    logout: (req, res) => {
+        req.render("home", {cookies: false})
     },
     forgetPassword: (req, res) => {
         const { email } = req.body
@@ -121,7 +165,7 @@ const userServices = {
             if (!result.length) {return res.render("forgetPass", { message: `${email} chưa được đăng kí`})}
 
             const emailServices = require("../../config/nodemailer");
-            emailServices(`${email}`, randomeCode)
+            emailServices(`${email}`, "Vui lòng nhập code để xác nhận thiết lập lại mật khẩu !" , `mã của bạn là ${randomeCode}`)
             res.render("forgetPass", { isCode: true, hideEmail: true} )
         })
     },

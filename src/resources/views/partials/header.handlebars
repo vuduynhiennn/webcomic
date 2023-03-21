@@ -129,9 +129,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/exit">
+                            <a href="/logout" onclick="logout()">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                <span>Thoát</span>
+                                <span class="header_logout"> Thoát </span>
                             </a>
                         </li>
                     </ul>
@@ -458,6 +458,10 @@
 <script>
     const cookies = document.cookie // minh xu li .split(;)
     const user_image = document.querySelector(".user_image")
-    user_image
-    console.log(decodeURIComponent(cookies))
+    console.log(decodeURIComponent(cookies).split("=")[1])
+
+
+    const logout = () => {
+        document.cookie = "credential" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
 </script> 
