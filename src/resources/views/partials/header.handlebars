@@ -1,7 +1,7 @@
 <div class="header grid ">
         <div class="container row no-gutters nav">
             <div class="container-logo col l-3 m-3">
-                <a href="#">
+                <a href="/">
                     <img src="/public/image/logomtg.svg" alt="">
                 </a>
             </div>
@@ -108,7 +108,7 @@
 {{#if cookies}} 
             <div class="container-user col l-2 m-2 c-0">
                 <a href="#">
-                    <img class="user_image" src="/public/image/avt.png" alt=""> 
+                    <img class="user_image" src="" alt="" id="user_image"> 
                     <div>
                         <span>Cá Nhân</span>
                         <i class="fa-solid fa-caret-down"></i>
@@ -123,15 +123,15 @@
                            </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="/followcomic">
                                 <i class="fa-solid fa-book"></i>
                                 <span>Truyện Theo Dõi</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/logout" onclick="logout()">
+                            <a href="/logout">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                <span class="header_logout"> Thoát </span>
+                                <span>Thoát</span>
                             </a>
                         </li>
                     </ul>
@@ -142,7 +142,7 @@
 {{else}}
             <div class="container-user__login">
                 <a href="/login">Đăng Nhập</a>
-                <div> {{token}}</div>
+                {{!-- <div> {{token}}</div> --}}
             </div>
 {{/if}}
         </div>
@@ -456,12 +456,14 @@
     </div>
 
 <script>
-    const cookies = document.cookie // minh xu li .split(;)
-    const user_image = document.querySelector(".user_image")
-    console.log(decodeURIComponent(cookies).split("=")[1])
+    {{#if cookies}} 
+        console.log("jello")
+        const cookies = document.cookie.split(';') // minh xu li .split(;)
+        const avatar = decodeURIComponent(cookies[3].split('=')[1])
+        console.log(avatar)
+        const user_image = document.getElementById("user_image")
+        user_image.src = avatar
+    {{/if}}
+    
 
-
-    const logout = () => {
-        document.cookie = "credential" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
 </script> 
