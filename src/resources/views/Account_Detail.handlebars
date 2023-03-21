@@ -1,4 +1,4 @@
-{{>header_login}}
+{{>header cookies=cookies}}
 <div class="user grid wide">
         <div class="user-container row ">
             <div class="col l-4 m-6 c-8">
@@ -20,13 +20,13 @@
                     <div class="user-list" id="user-listbar">
                         <ul>
                             <li class="user-listbar__user">
-                                <a href="./user" style="color: orange; ">
+                                <a href="./user">
                                     <i class="fa-solid fa-circle-info"></i>
                                     <span>Thông tin </span>
                                 </a>
                             </li>
                             <li class="user-listbar__account">
-                                <a href="./account">
+                                <a href="./account" style="color: orange;">
                                     <i class="fa-solid fa-user"></i>
                                     <span>Tài Khoản</span>
                                 </a>
@@ -44,7 +44,7 @@
                                 </a>
                             </li>
                             <li class="">
-                               <a href="">
+                               <a href="/logout">
                                     <i class="fa-sharp fa-solid fa-circle-xmark"></i>
                                     <span>Đăng xuất</span>
                                </a>
@@ -66,6 +66,10 @@
                             </div>
                             <div class="inf info-gender">
                                 <p>Giới Tính:</p>
+                                <input class="user-input" type="text">
+                            </div>
+                            <div class="inf info-gmail">
+                                <p>gmail:</p>
                                 <input class="user-input" type="text">
                             </div>
                             <div class="inf info-avatar">

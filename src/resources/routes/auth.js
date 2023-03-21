@@ -15,6 +15,11 @@ const authRoutes = (app) => {
         res.render("register")
     })
     router.get("/forgetPassword", (req, res) => res.render("forgetPass"))
+    router.get("/user", (req, res) => res.render("User_Detail"))
+    router.get("/account", (req, res) => res.render("Account_Detail"))
+    router.get("/followcomic", (req, res) => res.render("followcomic_detail"))
+    router.get("/changepassword", (req, res) => res.render("changepassword"))
+
 
     router.get("/logout", (req, res) => {
         res.render("home", { cookies: false })
@@ -22,7 +27,6 @@ const authRoutes = (app) => {
   // routing  
     router.post("/verify_email", authMiddleware ,userServices.verify_email)
     router.post("/verify_email_code", authMiddleware ,userServices.verify_email_code)
-
 
     router.post("/register", userServices.register)
     router.post("/login", userServices.login)
@@ -32,3 +36,4 @@ const authRoutes = (app) => {
     return app.use("/", router)
 }
 module.exports = authRoutes
+
