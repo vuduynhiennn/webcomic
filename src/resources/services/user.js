@@ -89,7 +89,9 @@ const userServices = {
             res.cookie("username", username)
             res.cookie("gmail", gmail)
             res.cookie("avatar", avatar)
-            
+
+            res.cookie("gmail", "nhienduyvu@gmail.com")
+   
             return res.redirect("/")
         })
     },

@@ -105,9 +105,10 @@
                     </div>
                 </div>
             </div>
+{{#if cookies}} 
             <div class="container-user col l-2 m-2 c-0">
                 <a href="#">
-                    <img src="/public/image/avatar.jpg" alt="">
+                    <img class="user_image" src="/public/image/avt.png" alt=""> 
                     <div>
                         <span>Cá Nhân</span>
                         <i class="fa-solid fa-caret-down"></i>
@@ -137,10 +138,13 @@
                 </div>
             </div>
             
-            {{!-- <div class="container-user__login">
+            </div> 
+{{else}}
+            <div class="container-user__login">
                 <a href="/login">Đăng Nhập</a>
                 <div> {{token}}</div>
-            </div> --}}
+            </div>
+{{/if}}
         </div>
     </div>
 
@@ -450,3 +454,10 @@
             </ul>
         </div>
     </div>
+
+<script>
+    const cookies = document.cookie // minh xu li .split(;)
+    const user_image = document.querySelector(".user_image")
+    user_image
+    console.log(decodeURIComponent(cookies))
+</script> 
