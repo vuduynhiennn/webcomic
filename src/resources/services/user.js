@@ -78,12 +78,17 @@ const userServices = {
             // generate token
             const identifier = result[0].userid
             const username = result[0].username
+            const gmail = result[0].gmail
+            const avatar = result[0].avatar
+
 
             const jwt = require("jsonwebtoken")
             const token = await jwt.sign(identifier, process.env.SECRET)
 
             res.cookie("token", token)
             res.cookie("username", username)
+            res.cookie("gmail", gmail)
+            res.cookie("avatar", avatar)
             
             return res.redirect("/")
         })
