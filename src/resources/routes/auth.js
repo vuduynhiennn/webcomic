@@ -16,7 +16,6 @@ const authRoutes = (app) => {
     })
     router.get("/forgetPassword", (req, res) => res.render("forgetPass"))
 
-
   // routing  
     router.post("/register", userServices.register)
     router.post("/login", userServices.login)

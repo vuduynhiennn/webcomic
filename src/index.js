@@ -9,7 +9,11 @@ const config = require("./config/config")
 config(app)
 
 // routes
-app.get('/', (req, res) => res.render('home')) 
+
+app.get('/', (req, res) => {
+    const cookies = req.headers.cookie // luu tru toan bo thong tin cookie
+    return res.render('home', { cookies: cookies })
+} )
 
 const authRoutes = require("./resources/routes/auth")
 authRoutes(app)
