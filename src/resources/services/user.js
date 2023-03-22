@@ -143,9 +143,11 @@ const userServices = {
             return res.redirect("/")
         })
     },
-    // logout: (req, res) => {
-    //     req.render("home", {cookies: false})
-    // },
+
+     logout: (req, res) => {
+        req.render("home", {cookies: false})
+     },
+
 
     forgetPassword: (req, res) => {
         const { email } = req.body
@@ -371,7 +373,7 @@ const userServices = {
         const { currentPass, newPass, confirmPass, currentId } = req.body
 
         if (!currentPass || !newPass || !confirmPass) {
-            return res.render("changepassword", {message: "không được để trống"})
+            return res.render("changepassword", {message: "không được để trống", cookies: true})
         }
 
         // create connection to mysql
@@ -398,13 +400,13 @@ const userServices = {
                     const sql = `UPDATE users SET pass="${newPass}" WHERE userid="${currentId}"`
                     conToDb.query(sql, (err, result) => {
                         if (err) return res.json(err)
-                        return res.render("changepassword", { message: "thay đổi mật khẩu thành công",cookies:true})
+                        return res.render("changepassword", { message: "thay đổi mật khẩu thành công", cookies: true})
                     })
                 } else {
-                    return res.render("changepassword", { message: "Mật khẩu mới và mật khẩu xác nhận không giống nhau tí nào"})
+                    return res.render("changepassword", { message: "Mật khẩu mới và mật khẩu xác nhận không giống nhau tí nào", cookies: true})
                 }
             } else {
-                return res.render("changepassword", { message: "Mật khẩu không đúng"})
+                return res.render("changepassword", { message: "Mật khẩu không đúng", cookies: true})
             }
         })
     }
