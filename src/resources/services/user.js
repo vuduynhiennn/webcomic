@@ -118,15 +118,24 @@ const userServices = {
             const identifier = result[0].userid
 
             const usernames = result[0].username
+            const fullname = result[0].fullname
             const gmail = result[0].gmail
+            const gender = result[0].gender
             const avatar = result[0].avatar
+            const createAt = result[0].dayat
+
+
             const jwt = require("jsonwebtoken")
             const token = await jwt.sign(identifier, process.env.SECRET)
+
             const credential = {
                 token: token,
                 username: usernames,
+                fullname: fullname, 
+                createAt: createAt,
                 gmail: gmail || "Vui lòng cập nhật email để lấy được mật khẩu khi quên nha",
-                avatar: avatar || "https://i.pinimg.com/564x/7f/26/e7/7f26e71b2c84e6b16d4f6d3fd8a58bca.jpg"
+                avatar: avatar || "https://i.pinimg.com/564x/7f/26/e7/7f26e71b2c84e6b16d4f6d3fd8a58bca.jpg",
+                gender: gender
             }
 
             res.cookie("credential", JSON.stringify(credential))
@@ -212,7 +221,65 @@ const userServices = {
     updateUserInforbasic: (req, res) => {
         console.log(req.body)
         const {new_fullname, new_gender, new_avatar, currentId} = req.body
-        
+
+        let genderMessage
+        if (new_fullname) {
+             // create connection
+             const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
+             const mysql = require("mysql");
+ 
+             const conToDb = mysql.createConnection({
+             host: HOST || "localhost",
+             user: USER || "sa",
+             password: PASSWORD || "123123",
+             database: DATABASE || "QUANLYNHANSU"
+             })
+ 
+             conToDb.connect((err) => {
+             if (err) throw err;
+             console.log("Connected to mysql")
+             })
+             // connected
+             // query
+            const sql = `UPDATE users SET fullname="${new_fullname}" WHERE userid="${currentId}"`
+             conToDb.query(sql , (err, result) => {
+                if (err) console.log(err)
+                conToDb.end()
+             })
+        }
+
+        if (new_gender) {
+            if (new_gender == "nam" || new_gender == "NAM" || new_gender == "Nam" || new_gender == "nAM" || new_gender == "NỮ" || new_gender == "nữ" || new_gender == "Nữ" || new_gender == "nỮ") {
+                // create connection
+                const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
+                const mysql = require("mysql");
+
+                const conToDb = mysql.createConnection({
+                host: HOST || "localhost",
+                user: USER || "sa",
+                password: PASSWORD || "123123",
+                database: DATABASE || "QUANLYNHANSU"
+                })
+
+                conToDb.connect((err) => {
+                if (err) throw err;
+                console.log("Connected to mysql")
+                })
+                // connected
+                // query
+                const sql = `UPDATE users SET gender="${new_gender}" WHERE userid="${currentId}"`
+                conToDb.query(sql , (err, result) => {
+                if (err) console.log(err)
+                conToDb.end()
+                })
+            }
+             else {
+                genderMessage="Giới tính không hợp lệ. Còn lại"
+             }
+        } 
+        let finalMessage = genderMessage || " "
+        return res.render("Account_Detail", {message: `${finalMessage} cập nhật thành công`, cookies: true})
+
     },
 
     // for change email
