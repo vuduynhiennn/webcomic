@@ -143,9 +143,9 @@ const userServices = {
             return res.redirect("/")
         })
     },
-    logout: (req, res) => {
-        req.render("home", {cookies: false})
-    },
+    // logout: (req, res) => {
+    //     req.render("home", {cookies: false})
+    // },
 
     forgetPassword: (req, res) => {
         const { email } = req.body

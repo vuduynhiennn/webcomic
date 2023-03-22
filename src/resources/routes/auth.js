@@ -22,8 +22,8 @@ const authRoutes = (app) => {
 
 
     router.get("/logout", (req, res) => {
-      res.clearCookie("credential")
-        res.render("home", { cookies: false })
+        res.clearCookie("credential")
+        res.redirect('/')
     })
   // routing  
 
