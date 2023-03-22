@@ -41,10 +41,13 @@ const emailServices = async (email, subject, html ,random_code) => {
         await transport.sendMail(mailOptions)
         // Không có lỗi gì thì trả về success
         console.log("message", 'Email sent successfully.')
+        
     } catch (error) {
         // Có lỗi thì các bạn log ở đây cũng như gửi message lỗi về phía client-        console.log(error)
-        res.status(500).json({ errors: error.message })
+        console.log(error.message)
+        return false
     }
+    return true
 }
 
 module.exports = emailServices

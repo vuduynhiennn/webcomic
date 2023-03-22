@@ -28,7 +28,10 @@ const authRoutes = (app) => {
 
     router.post("/change_password", authMiddleware, userServices.change_password)
 
-    router.post("/updateUserinfor", authMiddleware, userServices.updateUserinfor)
+
+    router.post("/updateUserInforbasic", authMiddleware, userServices.updateUserInforbasic)
+    // for change email
+    router.post("/updateUserinforemail", authMiddleware, userServices.updateUserinforemail)
     router.post("/updateUserinforCode", authMiddleware, userServices.updateUserinforCode)
 
     router.post("/verify_email", authMiddleware ,userServices.verify_email)
