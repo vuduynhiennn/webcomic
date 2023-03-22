@@ -398,7 +398,7 @@ const userServices = {
                     const sql = `UPDATE users SET pass="${newPass}" WHERE userid="${currentId}"`
                     conToDb.query(sql, (err, result) => {
                         if (err) return res.json(err)
-                        return res.render("changepassword", { message: "thay đổi mật khẩu thành công"})
+                        return res.render("changepassword", { message: "thay đổi mật khẩu thành công",cookies:true})
                     })
                 } else {
                     return res.render("changepassword", { message: "Mật khẩu mới và mật khẩu xác nhận không giống nhau tí nào"})
