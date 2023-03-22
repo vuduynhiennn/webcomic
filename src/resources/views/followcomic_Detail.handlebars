@@ -5,12 +5,12 @@
                 <div class="user-sidebar">
                     <div class="user-menu">
                         <div class="user-menu__avatar">
-                            <img src="/public/image/avatar.jpg" alt="">
+                            <img class="following_image" src="/public/image/avatar.jpg" alt="">
                         </div>
                         <div class="user-menu__username">
                             <div>
                                 <span>Tài Khoản:</span>
-                                <h3>Maviess10</h3>
+                                <h3 class="followwing_username">Maviess10</h3>
                             </div>
                         </div>
                         <div class="user-menu__listbar">
@@ -107,6 +107,24 @@
     <script>
         var listbar =  document.getElementById("user-listbar")
   
+        if (cookies) {
+        const parseCoookie = JSON.parse(decodeURIComponent(cookies).split("=")[1])
+        const avtURI = parseCoookie.avatar || "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2020%2F08%2F04%2Fcream-golden-retriever-closeup-91607998-2000.jpg"
+        const username = parseCoookie.username
+        const gmail = parseCoookie.gmail || "vui lòng cập nhật email"
+
+        const following_image = document.querySelector(".following_image")
+        const followwing_username = document.querySelector(".followwing_username")
+    
+        if (following_image && followwing_username) {
+            following_image.src=avtURI
+            followwing_username.innerHTML = username
+        }
+    
+    }
+
+
+
         document.getElementById("user-menu__listbar").onclick = function(){
             if(listbar.style.display != "none"){
                 listbar.style.display = "none"

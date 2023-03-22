@@ -17,7 +17,7 @@ const authRoutes = (app) => {
     router.get("/forgetPassword", (req, res) => res.render("forgetPass"))
     router.get("/user", authMiddleware, (req, res) => res.render("User_Detail", {cookies: true}))
     router.get("/account", (req, res) => res.render("Account_Detail",  { cookies: true }))
-    router.get("/followcomic", (req, res) => res.render("followcomic_detail"))
+    router.get("/followcomic", authMiddleware,  (req, res) => res.render("followcomic_Detail", { cookies: true }))
     router.get("/changepassword", authMiddleware, (req, res) => res.render("changepassword", { cookies: true}))
 
 

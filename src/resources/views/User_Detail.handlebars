@@ -71,11 +71,11 @@
                             </div>
                             <div class="inf info-gmail">
                                 <p>Gmail:</p>
-                                <span>{{data.gmail}}</span>
+                                <span class="userDetails_gmail"></span>
                             </div>
                             <div class="inf info-dayjoin">
                                 <p>Ngày tham gia:</p>
-                                <span>22/2/2222</span>
+                                <span>22/02/2022</span>
                             </div>
                             <div class="inf info-level">
                                 <p>Level:</p>
@@ -105,7 +105,6 @@
 
 <script>
     var listbar =  document.getElementById("user-listbar")
-
     document.getElementById("user-menu__listbar").onclick = function(){
         if(listbar.style.display != "none"){
             listbar.style.display = "none"
@@ -113,25 +112,23 @@
             listbar.style.display = "block"
         }
     }
-        const parseCoookie = JSON.parse(decodeURIComponent(cookies).split("=")[1])
-        const avtURI = parseCoookie.avatar
-        const username = parseCoookie.username
-        
+    const parseCoookie = JSON.parse(decodeURIComponent(cookies).split("=")[1])
+    const avtURI = parseCoookie.avatar || "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2020%2F08%2F04%2Fcream-golden-retriever-closeup-91607998-2000.jpg"
+    const username = parseCoookie.username
+    
+    const gmail = parseCoookie.gmail || "vui lòng cập nhật email để có thể lấy lại được mật khẩu khi quên"
+    const userdetails_image = document.querySelector(".userdetails_image")
+    const userdetails_image2 = document.querySelector(".userdetails_image2")
+    const user_details_username = document.querySelector(".user_details_username")
+    const user_details_username2 = document.querySelector(".user_details_username2")
+    const userDetails_gmail = document.querySelector(".userDetails_gmail")
 
-        const gmail = parseCoookie.gmail
-
-        const userdetails_image = document.querySelector(".userdetails_image")
+    if (user_details_username && userdetails_image && user_details_username2 && userDetails_gmail) {
         userdetails_image.src=avtURI
-
-        const userdetails_image2 = document.querySelector(".userdetails_image2")
         userdetails_image2.src=avtURI
-
-
-        const user_details_username = document.querySelector(".user_details_username")
+        userDetails_gmail.innerHTML = gmail
         user_details_username.innerHTML = username
-
-
-        const user_details_username2 = document.querySelector(".user_details_username2")
         user_details_username2.innerHTML = username
+    }
         
 </script>
