@@ -99,18 +99,19 @@
 
          if (cookies) {
             const parseCoookie = JSON.parse(decodeURIComponent(cookies).split("=")[1])
-            const avtURI = parseCoookie.avatar
+            const avtURI = parseCoookie.avatar || "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2020%2F08%2F04%2Fcream-golden-retriever-closeup-91607998-2000.jpg"
             const username = parseCoookie.username
-            const gmail = parseCoookie.gmail
+            const gmail = parseCoookie.gmail || "vui lòng cập nhật email"
 
             const account_image = document.querySelector(".account_image")
-            account_image.src=avtURI
-
             const account_image2 = document.querySelector(".account_image2")
-            account_image2.src=avtURI
-
             const account_username = document.querySelector(".account_username")
-            account_username.innerHTML = username
+        
+            if (account_image && account_image2 && account_username) {
+                account_image.src=avtURI
+                account_image2.src=avtURI
+                account_username.innerHTML = username
+            }
         
         }
 
