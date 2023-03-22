@@ -67,7 +67,7 @@
                             </div>
                             <div class="inf info-gender">
                                 <p>Giới Tính:</p>
-                                <span>Nam</span>
+                                <span class="account_gender">Nam</span>
                             </div>
                             <div class="inf info-gmail">
                                 <p>Gmail:</p>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="inf info-dayjoin">
                                 <p>Ngày tham gia:</p>
-                                <span>22/02/2022</span>
+                                <span class="userDetails_dayat">22/02/2022</span>
                             </div>
                             <div class="inf info-level">
                                 <p>Level:</p>
@@ -115,6 +115,9 @@
     const parseCoookie = JSON.parse(decodeURIComponent(cookies).split("=")[1])
     const avtURI = parseCoookie.avatar || "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2020%2F08%2F04%2Fcream-golden-retriever-closeup-91607998-2000.jpg"
     const username = parseCoookie.username
+    const gender = parseCoookie.gender
+    const fullname = parseCoookie.fullname
+    const createAt = parseCoookie.createAt
     
     const gmail = parseCoookie.gmail || "vui lòng cập nhật email để có thể lấy lại được mật khẩu khi quên"
     const userdetails_image = document.querySelector(".userdetails_image")
@@ -122,13 +125,18 @@
     const user_details_username = document.querySelector(".user_details_username")
     const user_details_username2 = document.querySelector(".user_details_username2")
     const userDetails_gmail = document.querySelector(".userDetails_gmail")
+    const account_gender = document.querySelector(".account_gender")
+    const userDetails_dayat = document.querySelector(".userDetails_dayat")
+    
 
-    if (user_details_username && userdetails_image && user_details_username2 && userDetails_gmail) {
+    if (user_details_username && userdetails_image && user_details_username2 && userDetails_gmail && account_gender && userDetails_dayat) {
         userdetails_image.src=avtURI
+        userDetails_dayat.innerHTML = createAt
+        account_gender.innerHTML = gender
         userdetails_image2.src=avtURI
         userDetails_gmail.innerHTML = gmail
         user_details_username.innerHTML = username
-        user_details_username2.innerHTML = username
+        user_details_username2.innerHTML = fullname
     }
         
 </script>
