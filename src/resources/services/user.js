@@ -208,8 +208,17 @@ const userServices = {
         })
 
     },
-    updateUserinfor: (req, res) => {
-        const { new_email } = req.body
+
+    updateUserInforbasic: (req, res) => {
+        console.log(req.body)
+        const {new_fullname, new_gender, new_avatar, currentId} = req.body
+        
+    },
+
+    // for change email
+    updateUserinforemail: (req, res) => {
+        const { new_email} = req.body
+
         if (new_email) {
             // create connection
             const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
@@ -231,8 +240,8 @@ const userServices = {
             conToDb.query(sql, (err, result) => {
                 if (err) return res.json(err)
                 if (result.length) {
-                    conToDb.end()
-                    return res.render("Account_Detail", { message: "Email đã tồn tại nếu là email của bạn hãy bấm quên mật khẩu, nếu không hãy thử một email khác"})
+                    conToDb.end()             
+                    return res.render("Account_Detail", { message: "Email đã tồn tại nếu là email của bạn hãy bấm quên mật khẩu, nếu không hãy thử một email khác", cookies: true})
                 }
 
                 const randomeCodes = Math.floor(Math.random() * (9999 - 2)) + 0
@@ -242,7 +251,9 @@ const userServices = {
                 var randomeCodeko = Math.floor(Math.random() * (9999 - 0)) + 0
                 var userEmail = new_email
                 module.exports = {randomeCodeko, userEmail}
+                
                 emailServices(new_email, "Vui lòng xác nhận đây là email của bạn bằng cách nhập mã sau:", `mã của bạn là <b> ${randomeCodeko}</b>`)
+            
                 conToDb.end()
                 return res.redirect("/authEmail")
             })
