@@ -12,6 +12,8 @@
     margin: 0px auto;
 }
 
+
+
 .user-sidebar{
     width: 100%;
 }
@@ -261,10 +263,17 @@
     border-radius: 100em;
 }
 
+
 .user-page__account > .inf,
 .user-page__changepassword > .inf{
     display: flex;
     margin: 20px;
+}
+
+.first-form_account {
+    padding-bottom: 2rem;
+    width: 100%;
+    border-bottom: 1px solid white;
 }
 
 
@@ -340,12 +349,13 @@
 .account-change >button,
 .password-change >button{
     margin: auto;
-    width: 150px;
-    height: 60px;
+    /* width: 150px; */
+    /* height: 60px; */
+    padding: 1rem 2rem;
     border-radius: 10px;
     cursor: pointer;
     background-color: rgb(232, 104, 104);
-    font-size: 30px;
+    font-size: 1rem;
     font-weight: bold;
 }
  
@@ -361,6 +371,10 @@
 
 
 
+.button-update {
+    width: fit-content;
+    background-color: blue;
+}
 
 
 
