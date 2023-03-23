@@ -1,0 +1,6 @@
+.admin_header {
+    background-color: rgb(230, 154, 154);
+    padding: 1rem  2rem;
+    display: flex;
+    justify-content: space-between;
+}

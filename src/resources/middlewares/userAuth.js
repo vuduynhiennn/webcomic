@@ -1,6 +1,7 @@
 require("dotenv").config()
 const jwt = require('jsonwebtoken')
-const authMiddleware = (req, res, next) => {
+const userAuth = (req, res, next) => {
+
    if (req.headers.cookie) {
       const token = req.headers.cookie.token
       if (!token) {
@@ -10,6 +11,9 @@ const authMiddleware = (req, res, next) => {
          
          jwt.verify(parseToken, process.env.SECRET, (err, decoded) => {
             if (err) console.log(err)
+
+            const userStatus = require("../sessions/userStatus")
+            if ( userStatus.userid =! decoded ) { return res.render("login", { message: "Token không đúng"}) }
             req.body.currentId = decoded
             next()   
          })
@@ -27,4 +31,4 @@ const authMiddleware = (req, res, next) => {
    
 }
 
-module.exports = authMiddleware
+module.exports = userAuth

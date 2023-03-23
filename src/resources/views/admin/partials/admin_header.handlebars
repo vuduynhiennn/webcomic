@@ -1,0 +1,23 @@
+<div class="admin_header">
+{{#if isLoggedIn}}
+    <div class="admin_nameTag">err</div>
+    <a class="admin_logout" href="/admin/logout"> log out </a>
+{{else}}
+    <div> không biết, không có nhớ admin_name</div>
+{{/if}}
+</div>
+
+
+<script>
+    const cookies = document.cookie
+    if (cookies) {
+        const parseCoookie = JSON.parse(decodeURIComponent(cookies).split("=")[1])
+        const admin_nameValue = parseCoookie.admin_name
+        
+        const admin_nameTag = document.querySelector(".admin_nameTag")
+
+        if (admin_nameTag) {
+            admin_nameTag.innerHTML = admin_nameValue
+        }
+    }
+</script>
