@@ -31,11 +31,6 @@ const authRoutes = (app) => {
     router.get("/admin/comic", (req, res) => res.render("admin-comic"))
 
 
-
-
-
-
-
   // routing  
 
     router.post("/change_password", authMiddleware, userServices.change_password)
