@@ -18,9 +18,11 @@ app.get('/', (req, res) => {
 const authRoutes = require("./resources/routes/auth")
 authRoutes(app)
 
+const adminRoutes = require("./resources/routes/admin")
+adminRoutes(app)
+
 const commicsRoutes = require("./resources/routes/commics")
 commicsRoutes(app)
 
 
 app.listen(PORT, () => console.log(`Example app listening on port http://localhost:${PORT}`))
-// asdasdasdas

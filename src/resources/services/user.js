@@ -148,7 +148,6 @@ const userServices = {
         req.render("home", {cookies: false})
      },
 
-
     forgetPassword: (req, res) => {
         const { email } = req.body
         if (!email) {return res.render("forgetPass", { message: "Vui lòng nhập email vào"})}
