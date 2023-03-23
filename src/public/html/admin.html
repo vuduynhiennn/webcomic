@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đọc truyện tranh online - Truyện gì cũng có - Nettruyen</title>  
+    <link href="../fontawesome-free-6.1.1-web/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/grid.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <div class="header grid ">
+        <div class="container row no-gutters nav">
+            <div class="container-logo ">
+                <a href="/">
+                    <img src="../image/logomtg.svg" alt="">
+                </a>
+            </div>
+            <div class="container-seach col l-5 m-5 c-0">
+               <div class="container-seach__input">
+                    <input type="text" placeholder="Tìm truyện...">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+               </div>
+            </div>
+            <div class="container-notification col l-2 m-2">
+                <div class="container-notification__light" id="change-background">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+                
+            </div>
+            <div class="container-user col l-4 m-4 c-0">
+                <a href="#">
+                    <img src="../image/avatar.jpg" alt="">
+                    <div>
+                        <span>Cá Nhân</span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </a>
+                <div class="drop-user">
+                    <ul>
+                        <li>
+                           <a href="">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Trang Cá Nhân</span>
+                           </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa-solid fa-book"></i>
+                                <span>Truyện Theo Dõi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span>Thoát</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="admin-main grid">
+        <div class="admin-main-container grid wide">
+            <div class="admin-container-addcomic">
+                <button id="newcomic">Thêm</button>
+                <div class="admin-container-newcomic" id="formaddcomic">
+                    <div class="admin-addcomic">
+                        <div class="newcomic image">
+                            <div class="newcomic-field">
+                                <p>Avatar</p>
+                            </div>
+                            <div class="newcomic-value">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="newcomic name">
+                            <div class="newcomic-field">
+                                <p>Tên truyện</p>
+                            </div>
+                            <div class="newcomic-value">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="newcomic author">
+                            <div class="newcomic-field">
+                                <p>Tác giả</p>
+                            </div>
+                            <div class="newcomic-value">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="newcomic tag">
+                            <div class="newcomic-field">
+                                <p>Thể loại</p>
+                            </div>
+                            <div class="newcomic-value">
+                                <div class="drop-tag__list row no-gutters">
+                                    <div class="drop-tag__item ">
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" name="Action">
+                                                <p> Action</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Adult">
+                                                <p> Adult</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Adventure">
+                                                <p> Adventure</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Anime">
+                                                <p> Anime</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="chuyensinh">
+                                                <p> Chuyển Sinh</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="dothi">
+                                                <p> Đô Thị</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Comedy">
+                                                <p> Comedy</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Comic">
+                                                <p> Comic</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Cooking">
+                                                <p> Cooking</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Cổ Đại">
+                                                <p> Cổ Đại</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Doujinshi">
+                                                <p> Doujinshi</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Drama">
+                                                <p> Drama</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Đam Mỹ">
+                                                <p> Đam Mỹ</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="drop-tag__item ">
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" name="Ecchi">
+                                                <p> Ecchi</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Fantasy">
+                                                <p> Fantasy</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Gender Bender">
+                                                <p> Gender Bender</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Harem">
+                                                <p> Harem</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Historical">
+                                                <p> Historical</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Horror">
+                                                <p> Horror</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Josei">
+                                                <p> Josei</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Live Action">
+                                                <p> Live Action</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Manga">
+                                                <p> Manga</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Manhhua">
+                                                <p> Manhhua</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Manhwa">
+                                                <p> Manhwa</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Martial Arts">
+                                                <p> Martial Arts</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Mature">
+                                                <p> Mature</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="drop-tag__item ">
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" name="Mecha">
+                                                <p> Mecha</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Mystery">
+                                                <p> Mystery</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Ngôn Tình">
+                                                <p> Ngôn tình</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="One Shot">
+                                                <p> One Shot</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Osychological">
+                                                <p> Osychological</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Romance">
+                                                <p> Romance</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="School Life">
+                                                <p> School Life</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Sci-fi">
+                                                <p> Sci-fi</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Seinen">
+                                                <p> Seinen</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Shoujo">
+                                                <p> Shoujo</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Shoujo AI">
+                                                <p> Shoujo AI</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Shounen">
+                                                <p> Shounen</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Shounen Ai">
+                                                <p> Shounen Ai</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="drop-tag__item ">
+                                        <ul>
+                                            <li>
+                                                <input type="checkbox" name="Slice of Life">
+                                                <p> Slice of Life</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Smut">
+                                                <p> Smut</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Soft Yaoi">
+                                                <p> Soft Yaoi</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Soft Yuri">
+                                                <p> Soft Yuri</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Sports">
+                                                <p> Sports</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Supernatural">
+                                                <p> Supernatural</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Thiếu Nhi">
+                                                <p> Thiếu Nhi</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Tragedy">
+                                                <p> Tragedy</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Trinh Thám">
+                                                <p> Trinh Thám</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Truyện Scan">
+                                                <p> Truyện Scan</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Truyện Màu">
+                                                <p> Truyện Màu</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Webtoon">
+                                                <p> Webtoon</p>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" name="Xuyên Không">
+                                                <p> Xuyên Không</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add___comic">
+                            <button>Thêm mới</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="admin-listcomic">
+                    <div class="listcomic-header">
+                        <div class="idcomic">
+                            <div>
+                                <span>id</span>
+                            </div>
+                        </div>
+                        <div class="avatar">
+                           Avatar
+                        </div>
+                        <div class="info">
+                            Thông Tin
+                        </div>
+                    </div>
+
+                    <!-- listcomic -->
+                    <div class="comic-item">
+                        <div class="comic-item__id">
+                            <div>
+                                <span>#91872</span>
+                            </div>
+                        </div>
+                        <div class="comic-item__avatar">
+                            <div>
+                                <img src="../image/comic.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="comic-item__info">
+                            <div class="comic-name">
+                                <h5>Vân Trung Hoa</h5>
+                            </div>
+                            <div class="comic-detail">
+                                <div class="comic-detail_status">
+                                    <span>Tình trạng:</span>
+                                    <p>end</p>
+                                </div>
+                                <div class="comic-detail_author">
+                                    <span>Tác giả:</span>
+                                    <p>Đoán xem</p>
+                                </div>
+                                <div class="comic-detail_tag">
+                                    <span>Thể loại:</span>
+                                    <p>lmao - lmao - bruh - burh - lmao</p>
+                                </div>
+                                <div class="comic-detail_newchap">
+                                    <span>Chap mới nhất:</span>
+                                    <p>Chap 127</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comic-item__action">
+                            <div>
+                                <button>Chỉnh sửa</button>
+                            </div>
+                            <div>
+                                <button>Thêm chap</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comic-item">
+                        <div class="comic-item__id">
+                            <div>
+                                <span>#91873</span>
+                            </div>
+                        </div>
+                        <div class="comic-item__avatar">
+                            <div>
+                                <img src="../image//avatar.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="comic-item__info">
+                            <div class="comic-name">
+                                <h5>Đây là một cái avatar rất đẹp tao chôm về chỉ để test cái củ loz này</h5>
+                            </div>
+                            <div class="comic-detail">
+                                <div class="comic-detail_status">
+                                    <span>Tình trạng:</span>
+                                    <p>end</p>
+                                </div>
+                                <div class="comic-detail_author">
+                                    <span>Tác giả:</span>
+                                    <p>Đoán xem</p>
+                                </div>
+                                <div class="comic-detail_tag">
+                                    <span>Thể loại:</span>
+                                    <p>lmao - lmao - bruh - burh - lmao -lmao - lmao - bruh - burh - lmao lmao - lmao - bruh - burh - lmao</p>
+                                </div>
+                                <div class="comic-detail_newchap">
+                                    <span>Chap mới nhất:</span>
+                                    <p>Chap 127</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comic-item__action">
+                            <div>
+                                <button>Chỉnh sửa</button>
+                            </div>
+                            <div>
+                                <button>Thêm chap</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comic-item">
+                        <div class="comic-item__id">
+                            <div>
+                                <span>#91874</span>
+                            </div>
+                        </div>
+                        <div class="comic-item__avatar">
+                            <div>
+                                <img src="../image//avatarvuong.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="comic-item__info">
+                            <div class="comic-name">
+                                <h5>Giống cái trên nhưng size vuông</h5>
+                            </div>
+                            <div class="comic-detail">
+                                <div class="comic-detail_status">
+                                    <span>Tình trạng:</span>
+                                    <p>end</p>
+                                </div>
+                                <div class="comic-detail_author">
+                                    <span>Tác giả:</span>
+                                    <p>Đoán xem</p>
+                                </div>
+                                <div class="comic-detail_tag">
+                                    <span>Thể loại:</span>
+                                    <p>lmao - lmao - bruh - burh - lmao -lmao - lmao - bruh - burh - lmao lmao - lmao - bruh - burh - lmao</p>
+                                </div>
+                                <div class="comic-detail_newchap">
+                                    <span>Chap mới nhất:</span>
+                                    <p>Chap 127</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comic-item__action">
+                            <div>
+                                <button>Chỉnh sửa</button>
+                            </div>
+                            <div>
+                                <button>Thêm chap</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var newcomic = document.getElementById("newcomic")
+        var newcomicform = document.getElementById("formaddcomic")
+        
+        
+        newcomic.onclick = function(){
+            if(newcomicform.style.display !="block"){
+                newcomicform.style.display ="block"
+            }
+            else{
+                newcomicform.style.display ="none"
+            }
+            
+        }
+    </script>
+</body>
+</html>   
