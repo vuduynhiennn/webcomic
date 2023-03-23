@@ -25,6 +25,17 @@ const authRoutes = (app) => {
         res.clearCookie("credential")
         res.redirect('/')
     })
+
+    //admin
+    router.get("/admin", (req, res) => res.render("admin-login"))
+    router.get("/admin/comic", (req, res) => res.render("admin-comic"))
+
+
+
+
+
+
+
   // routing  
 
     router.post("/change_password", authMiddleware, userServices.change_password)
