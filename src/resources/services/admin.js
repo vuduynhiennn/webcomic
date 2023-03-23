@@ -1,7 +1,7 @@
 const adminServices = {
-    login: (req, res) => {
+    login: async (req, res) => {
         const { admin_name, admin_password } = req.body
-        if (!admin_name || !admin_password) { return res.render("../views/admin/admin-login.handlebars", { message: "Nhập đầy đủ thông tin mới đăng nhập được chứ"}) } 
+        if (!admin_name || !admin_password) { return res.render("admin-login", { message: "Nhập đầy đủ thông tin mới đăng nhập được chứ"}) } 
 
         // create connection 
         const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
@@ -18,12 +18,24 @@ const adminServices = {
         })
         // connected to mysql
         const sql = `SELECT * FROM admin WHERE admin_name="${admin_name}"`;
-        conToDb.query(sql, (err, result) => {
+        await conToDb.query(sql, async (err, result) => {
             if (err) console.log(err)
-            if (!result.length) { return res.render("../views/admin/admin-login.handlebars", { message: `Không tìm thấy tài khoản ${admin_name}`}) }
-            if (admin_password != result[0].admin_password) { return res.render("../views/admin/admin-login.handlebars", { message: "mật khẩu không đúng rồi"}) }
+            if (!result.length) { return res.render("admin-login", { message: `Không tìm thấy tài khoản ${admin_name}`}) }
+            if (admin_password != result[0].admin_password) { return res.render("admin-login", { message: "mật khẩu không đúng rồi"}) }
 
-            return res.render("../views/admin/admin-comic.handlebars")
+            const jwt = require("jsonwebtoken")
+            const token = await jwt.sign(admin_name, process.env.SECRET)
+
+            const admin_credential = {
+                admin_name,
+                token: token
+            }    
+
+            const adminStatus = require("../sessions/adminStatus")
+            // update admin status - admin_name
+            adminStatus.admin_name = admin_name
+            res.cookie("credential", JSON.stringify(admin_credential))
+            return res.render("admin_commic", { isLoggedIn: true })
         })
     }
 }

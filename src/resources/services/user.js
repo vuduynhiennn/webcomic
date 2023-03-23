@@ -138,16 +138,17 @@ const userServices = {
                 gender: gender
             }
 
+            const userStatus = require("../sessions/userStatus")
+            userStatus.userid = identifier
+
             res.cookie("credential", JSON.stringify(credential))
             
             return res.redirect("/")
         })
     },
-
      logout: (req, res) => {
         req.render("home", {cookies: false})
      },
-
     forgetPassword: (req, res) => {
         const { email } = req.body
         if (!email) {return res.render("forgetPass", { message: "Vui lòng nhập email vào"})}
@@ -282,7 +283,6 @@ const userServices = {
         return res.render("Account_Detail", {message: `${finalMessage} cập nhật thành công`, cookies: true})
 
     },
-
     // for change email
     updateUserinforemail: (req, res) => {
         const { new_email} = req.body

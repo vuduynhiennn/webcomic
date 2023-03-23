@@ -1,32 +1,26 @@
 const express = require("express");
 const path = require("path");
-const handlbars = require("express-handlebars").create({
+const handlebars = require("express-handlebars").create({
   defaultLayout: "main"
 });
 
 
 const config = (app) => {
-  app.use(
-    express.urlencoded({
-      extended: true,
-    })
-  );
-
+  app.use( express.urlencoded({ extended: true }));
   app.use(express.json());
-
-  app.engine("handlebars", handlbars.engine);
-  app.engine("adminadminHandlebars", handlbars.engine);
-
+  
+  // setup views for server using handlebars template
+  app.engine("handlebars", handlebars.engine);
   app.set("view engine", "handlebars");
-
   app.set("views", [
-    path.join(__dirname, "../resources/views"),
+    path.join(__dirname, "../resources/views/user"),
     path.join(__dirname, "../resources/views/admin")
   ]);
+
+  // set static public folder
   app.use("/public", express.static(path.join(__dirname, "../public")));
 
-  const passport = require("passport");
-
+  // setup session and cookie storage
   const session = require("express-session");
   app.use(
     session({
@@ -37,7 +31,6 @@ const config = (app) => {
     })
   );
 
-  app.use(passport.authenticate("session"));
 };
 
 module.exports = config;
