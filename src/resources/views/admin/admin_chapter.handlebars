@@ -1,0 +1,52 @@
+{{> admin_header isLoggedIn=isLoggedIn}}
+
+<div class="admin-main grid">
+    <div class="admin-main-container grid wide">
+        <div class="admin-container-addchapter">
+            <div class="newchapter-header">
+                <p>Truyện dang add </p>
+            </div>
+            <form action="/admin/addnewchapter" method="POST" enctype="multipart/form-data" class="admin-container-newchapter" id="formaddchapter">                            
+                            <div class="admin-addchapter">
+                                <div class="newchapter comic">
+                                    <div class="newchapter-field">
+                                        <p>ID Truyện</p>
+                                    </div>
+                                    <div class="newchapter-value">
+                                        <input  name="comic" type="text" readonly value="{{comic}}">
+                                    </div>
+                                </div>
+                                <div class="newchapter name">
+                                    <div class="newchapter-field">
+                                        <p>Tên chap</p>
+                                    </div>
+                                    <div class="newchapter-value">
+                                        <input  name="name" type="text" >
+                                    </div>
+                                </div>
+                                <div class="newchapter image">
+                                    <div class="newchapter-field">
+                                        <p>Ảnh</p>
+                                    </div>
+                                    <div class="newchapter-value">
+                                        <input name="image" type="file" multiple>
+                                    </div>
+                                </div>
+                                <div class="newchapter imagenumber">
+                                    <div class="newchapter-field">
+                                        <p>Ảnh</p>
+                                    </div>
+                                    <div class="newchapter-value">
+                                        <input name="number" type="text" multiple>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="add___chapter">
+                                    <button type="submit">Thêm mới</button>
+                                </div>
+                            </div>
+            </form>
+        </div>
+    </div>
+</div>

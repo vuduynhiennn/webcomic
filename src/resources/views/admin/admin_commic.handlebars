@@ -4,14 +4,14 @@
     <div class="admin-main-container grid wide">
         <div class="admin-container-addcomic">
             <button id="newcomic">Thêm</button>
-            <div class="admin-container-newcomic" id="formaddcomic">
+            <form action="/admin/addnewcomic" method="POST" enctype="multipart/form-data"  class="admin-container-newcomic" id="formaddcomic">
                 <div class="admin-addcomic">
                     <div class="newcomic image">
                         <div class="newcomic-field">
                             <p>Avatar</p>
                         </div>
                         <div class="newcomic-value">
-                            <input type="text">
+                            <input name="image" type="file">
                         </div>
                     </div>
                     <div class="newcomic name">
@@ -19,7 +19,7 @@
                             <p>Tên truyện</p>
                         </div>
                         <div class="newcomic-value">
-                            <input type="text">
+                            <input  name="name" type="text" >
                         </div>
                     </div>
                     <div class="newcomic author">
@@ -27,7 +27,7 @@
                             <p>Tác giả</p>
                         </div>
                         <div class="newcomic-value">
-                            <input type="text">
+                            <input name="author" type="text">
                         </div>
                     </div>
                     <div class="newcomic tag">
@@ -35,7 +35,8 @@
                             <p>Thể loại</p>
                         </div>
                         <div class="newcomic-value">
-                            <div class="drop-tag__list row no-gutters">
+                            <input name="tag" type="text">
+                            {{!-- <div class="drop-tag__list row no-gutters">
                                 <div class="drop-tag__item ">
                                     <ul>
                                         <li>
@@ -260,15 +261,15 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="add___comic">
-                        <button>Thêm mới</button>
+                        <button type="submit">Thêm mới</button>
                     </div>
                 </div>
                 
-            </div>
+            </form>
             <div class="admin-listcomic">
                 <div class="listcomic-header">
                     <div class="idcomic">
@@ -285,37 +286,44 @@
                 </div>
 
                 <!-- listcomic -->
+                {{#each comics}}
                 <div class="comic-item">
                     <div class="comic-item__id">
                         <div>
-                            <span>#91872</span>
+                            <span>{{this.id}}</span>
                         </div>
                     </div>
                     <div class="comic-item__avatar">
                         <div>
-                            <img src="../../public/image/comic.jpg" alt="">
+                            <img src="/public/image/comic/{{this.image}}" alt="">
                         </div>
                     </div>
                     <div class="comic-item__info">
                         <div class="comic-name">
-                            <h5>Vân Trung Hoa</h5>
+                            <h5>{{this.name}}</h5>
                         </div>
                         <div class="comic-detail">
                             <div class="comic-detail_status">
                                 <span>Tình trạng:</span>
-                                <p>end</p>
+                                <p>
+                                    {{#if this.status}} 
+                                        kết thúc
+                                    {{else}}
+                                        Đang tiến hành
+                                    {{/if}}
+                                </p>
                             </div>
                             <div class="comic-detail_author">
                                 <span>Tác giả:</span>
-                                <p>Đoán xem</p>
+                                <p>{{this.author}}</p>
                             </div>
                             <div class="comic-detail_tag">
                                 <span>Thể loại:</span>
-                                <p>lmao - lmao - bruh - burh - lmao</p>
+                                <p>{{this.tag}}</p>
                             </div>
                             <div class="comic-detail_newchap">
                                 <span>Chap mới nhất:</span>
-                                <p>Chap 127</p>
+                                <p>????????</p>
                             </div>
                         </div>
                     </div>
@@ -324,98 +332,11 @@
                             <button>Chỉnh sửa</button>
                         </div>
                         <div>
-                            <button>Thêm chap</button>
+                            <a href="./chapter/{{this.id}}"><button>Thêm chap</button></a>
                         </div>
                     </div>
                 </div>
-
-                <div class="comic-item">
-                    <div class="comic-item__id">
-                        <div>
-                            <span>#91873</span>
-                        </div>
-                    </div>
-                    <div class="comic-item__avatar">
-                        <div>
-                            <img src="../../public/image/avatar.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="comic-item__info">
-                        <div class="comic-name">
-                            <h5>Đây là một cái avatar rất đẹp bị chôm về chỉ để test cái củ loz này</h5>
-                        </div>
-                        <div class="comic-detail">
-                            <div class="comic-detail_status">
-                                <span>Tình trạng:</span>
-                                <p>end</p>
-                            </div>
-                            <div class="comic-detail_author">
-                                <span>Tác giả:</span>
-                                <p>Đoán xem</p>
-                            </div>
-                            <div class="comic-detail_tag">
-                                <span>Thể loại:</span>
-                                <p>lmao - lmao - bruh - burh - lmao -lmao - lmao - bruh - burh - lmao lmao - lmao - bruh - burh - lmao</p>
-                            </div>
-                            <div class="comic-detail_newchap">
-                                <span>Chap mới nhất:</span>
-                                <p>Chap 127</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comic-item__action">
-                        <div>
-                            <button>Chỉnh sửa</button>
-                        </div>
-                        <div>
-                            <button>Thêm chap</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="comic-item">
-                    <div class="comic-item__id">
-                        <div>
-                            <span>#91874</span>
-                        </div>
-                    </div>
-                    <div class="comic-item__avatar">
-                        <div>
-                            <img src="../../public/image/avatarvuong.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="comic-item__info">
-                        <div class="comic-name">
-                            <h5>Giống cái trên nhưng size vuông</h5>
-                        </div>
-                        <div class="comic-detail">
-                            <div class="comic-detail_status">
-                                <span>Tình trạng:</span>
-                                <p>end</p>
-                            </div>
-                            <div class="comic-detail_author">
-                                <span>Tác giả:</span>
-                                <p>Đoán xem</p>
-                            </div>
-                            <div class="comic-detail_tag">
-                                <span>Thể loại:</span>
-                                <p>lmao - lmao - bruh - burh - lmao -lmao - lmao - bruh - burh - lmao lmao - lmao - bruh - burh - lmao</p>
-                            </div>
-                            <div class="comic-detail_newchap">
-                                <span>Chap mới nhất:</span>
-                                <p>Chap 127</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comic-item__action">
-                        <div>
-                            <button>Chỉnh sửa</button>
-                        </div>
-                        <div>
-                            <button>Thêm chap</button>
-                        </div>
-                    </div>
-                </div>
+                 {{/each}}
             </div>
         </div>
     </div>

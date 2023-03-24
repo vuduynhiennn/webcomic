@@ -1,0 +1,105 @@
+{{>header cookies=cookies}}
+
+    <div class="comic grid wide">
+        <div class="comic-container row no-gutters">
+            <div class="comic-info col l-8">
+                <div class="comic-info_header">
+                    <h3>{{comics.name}}</h3>
+                </div>
+                <div class="comic-info_body row">
+                    <div class="comic-avatar col l-4 m-4">
+                        <div>
+                            <img src="/public/image/comic/{{comics.image}}" alt="">
+                        </div>
+                    </div>
+                    <div class="comic-detail col l-8 m-8">
+                        <div class="comic-detail__author row">
+                            <div>
+                                <i class="fa-solid fa-user"></i>
+                                <p>Tác giả:</p>
+                            </div>
+                            <p><a href="">{{comics.author}}</a></p>
+                            
+                        </div>
+                        <div class="comic-detail__status row">
+                           <div>
+                                <i class="fa-solid fa-book"></i>
+                                <p>Trạng thái:</p>
+                           </div>
+                            <p>
+                                {{#if comics.status}} 
+                                        kết thúc
+                                {{else}}
+                                        Đang tiến hành
+                                {{/if}}
+                            </p>
+                        </div>
+                        <div class="comic-detail__tag row">
+                            <div>
+                                <i class="fa-solid fa-tag"></i>
+                                <p>Thể loại:</p>
+                            </div>
+                            <p><a href="">{{comics.tag}}</a> </p>
+                        </div>
+                        <div class="comic-detail__view row">
+                            <div>
+                                <i class="fa-solid fa-eye"></i>
+                                <p>Lượt xem:</p>
+                            </div>
+                            <p>{{comics.views}}</p>
+                        </div>
+                        <div class="comic-detail__follow">
+                            <button class="comic-button follow">Theo dõi</button>
+                        </div>
+                        <div class="comic-detail__read">
+                            <button class="comic-button firstchapter">Đọc từ đầu</button>
+                            <button class="comic-button lastchapter">Đọc mới nhất</button>
+                        </div>
+                    </div>    
+                </div>
+                <div class="comic-info__review">
+                    <div class="review-header">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>NỘI DUNG</span>
+                    </div>
+                    <div class="review-detail">
+                        <p>Võ đạo đỉnh phong, là cô độc, là tịch mịch, là dài đằng đẵng cầu tác, là cao xử bất thắng hàn
+                            Phát triển trong nghịch cảnh, cầu sinh nơi tuyệt địa, bất khuất không buông tha, mới có thể có thể phá võ chi cực đạo.
+                            Lăng Tiêu các thí luyện đệ tử kiêm quét rác gã sai vặt Dương Khai ngẫu lấy được một bản vô tự hắc thư, từ nay về sau đạp vào dài đằng đẵng võ đạo.Võ đạo đỉnh phong, là cô độc, là tịch mịch, là dài đằng đẵng cầu tác, là cao xử bất thắng hàn
+                            Phát triển trong nghịch cảnh, cầu sinh nơi tuyệt địa, bất khuất không buông tha, mới có thể có thể phá võ chi cực đạo.
+                            Lăng Tiêu các thí luyện đệ tử kiêm quét rác gã sai vặt Dương Khai ngẫu lấy được một bản vô tự hắc thư, từ nay về sau đạp vào dài đằng đẵng võ đạo.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comic-chapters col l-4">
+                <div class="chapter-menu">
+                    <i class="fa-solid fa-bars"></i>
+                    <span>Danh Sách Chương</span>
+                </div>
+                <div class="chapter-header row">
+                    <div class="chapter">
+                        Chương
+                    </div>
+                    <div class="date-update">
+                        Ngày cập nhật
+                    </div>
+                </div>
+                <div class="chapter-detail">
+                    {{#each chapters}}
+                    <div class="chapter-detail__list">
+                        <div class="chapter">
+                            <a href="/commic/chap/{{this.id}}">{{this.name}}</a>
+                        </div>
+                        <div class="date-update">
+                            <span>{{this.uploadTime}}</span>
+                        </div>
+                    </div>
+                    {{/each}}
+                    
+                </div>
+            </div>
+        </div>
+        <div class="comic-comment">
+            dưới này là commenttttttttttttttttttttttttttttttttt
+        </div>
+    </div>

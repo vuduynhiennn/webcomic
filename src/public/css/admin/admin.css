@@ -51,9 +51,8 @@
     flex: 3;
 }
 
-.admin-addcomic >.image > .newcomic-value > input,
-.admin-addcomic >.name >.newcomic-value > input,
-.admin-addcomic >.author >.newcomic-value > input{
+.admin-addcomic >.newcomic> .newcomic-value > input
+{
         background-color: transparent;
     border: none;
     border-bottom: 1px solid yellow;
@@ -108,7 +107,7 @@
 
 
 
-.addcomic-list___tag{
+/* .addcomic-list___tag{
     position: absolute;
     top: 0;
     left: 50%;
@@ -116,10 +115,11 @@
     background-color: aliceblue;
     border-radius: 10px;
     display: none;
-}
+} */
  
 
 .drop-tag__list{
+    display: flex;
     flex-wrap: nowrap;
     font-size: 15px;
     border: 1px solid white;
@@ -271,6 +271,13 @@
 }
 
 .comic-item__action>div>button{
+    margin: 20px;
+    height: 40px;
+    width: 100px;
+}
+
+
+.comic-item__action>div>a>button{
     margin: 20px;
     height: 40px;
     width: 100px;

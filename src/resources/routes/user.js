@@ -3,13 +3,12 @@ const express = require("express");
 const router = express.Router();
 const userAuth = require("../middlewares/userAuth");
 const userServices = require("../services/user")
+const comicServices = require("../services/comics")
 
 const userRoutes = (app) => {
-  // routes for render views
-  app.get('/', (req, res) => {
-    const cookies = req.headers.cookie 
-    return res.render('home', { cookies: cookies })
-  })
+
+  app.get('/',comicServices.allcomic)
+  router.get("/commic/:id", comicServices.showcomic)
 
   router.get("/login", (req, res) => { res.render("login") } )
   router.get("/register", (req, res) => { res.render("register") })
