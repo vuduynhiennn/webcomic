@@ -14,7 +14,8 @@ const config = (app) => {
   app.set("view engine", "handlebars");
   app.set("views", [
     path.join(__dirname, "../resources/views/user"),
-    path.join(__dirname, "../resources/views/admin")
+    path.join(__dirname, "../resources/views/admin"),
+    path.join(__dirname, "../resources/views/commics")
   ]);
 
   // set static public folder

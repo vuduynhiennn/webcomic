@@ -221,10 +221,34 @@ const userServices = {
     },
 
     updateUserInforbasic: (req, res) => {
-        console.log(req.body)
-        const {new_fullname, new_gender, new_avatar, currentId} = req.body
+        const {new_fullname, new_gender, currentId} = req.body
 
         let genderMessage
+        const new_avt = req.file.filename
+        if (new_avt) {
+            // const new_avt = req.file.filename
+            const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
+            const mysql = require("mysql");
+
+            const conToDb = mysql.createConnection({
+            host: HOST || "localhost",
+            user: USER || "sa",
+            password: PASSWORD || "123123",
+            database: DATABASE || "QUANLYNHANSU"
+            })
+
+            conToDb.connect((err) => {
+            if (err) throw err;
+            console.log("Connected to mysql")
+            })
+            
+            const sql = `UPDATE users SET avatar='${new_avt}' WHERE userid="${currentId}"`
+            conToDb.query(sql , (err, result) => {
+            if (err) console.log(err)
+            conToDb.end()
+            })
+        }
+
         if (new_fullname) {
              // create connection
              const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]

@@ -4,6 +4,18 @@ const router = express.Router();
 const userAuth = require("../middlewares/userAuth");
 const userServices = require("../services/user")
 const comicServices = require("../services/comics")
+const multer = require("multer")
+
+const usertorage = multer.diskStorage({
+    destination:(req,file,res)=>{
+        res(null,'./src/public/image/avatar')
+    },
+    filename:(req,file,res)=>{
+        res(null,file.originalname)
+    }
+})
+const userupload =multer({storage:usertorage})
+
 
 const userRoutes = (app) => {
 
@@ -25,7 +37,7 @@ const userRoutes = (app) => {
 
 // routing  
   router.post("/change_password", userAuth, userServices.change_password)
-  router.post("/updateUserInforbasic", userAuth, userServices.updateUserInforbasic)
+  router.post("/updateUserInforbasic", userAuth,userupload.single("new_avatar"), userServices.updateUserInforbasic)
   // for change email
   router.post("/updateUserinforemail", userAuth, userServices.updateUserinforemail)
   router.post("/updateUserinforCode", userAuth, userServices.updateUserinforCode)

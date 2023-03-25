@@ -113,11 +113,13 @@
         const username = parseCoookie.username
         const gmail = parseCoookie.gmail || "vui lòng cập nhật email"
 
+        const uservat ="../../../public/image/avatar/"+avtURI 
+
         const following_image = document.querySelector(".following_image")
         const followwing_username = document.querySelector(".followwing_username")
     
         if (following_image && followwing_username) {
-            following_image.src=avtURI
+            following_image.src=uservat
             followwing_username.innerHTML = username
         }
     

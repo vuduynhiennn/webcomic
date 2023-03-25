@@ -460,14 +460,19 @@
     if (cookies) {
         const parseCoookie = JSON.parse(decodeURIComponent(cookies).split("=")[1])
         const avtURI = parseCoookie.avatar || "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2020%2F08%2F04%2Fcream-golden-retriever-closeup-91607998-2000.jpg"
-        const username = parseCoookie.username 
+        const username = parseCoookie.username ||  parseCoookie.admin_name
         const gmail = parseCoookie.gmail
-        
+        if(parseCoookie.avatar){
+            var uservat ="../../../public/image/avatar/"+avtURI 
+        }else{
+           var uservat= "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2020%2F08%2F04%2Fcream-golden-retriever-closeup-91607998-2000.jpg"
+        }
+        console.log(uservat)
         const user_image = document.querySelector(".user_image")
         const header_username = document.querySelector(".header_username")
         
         if(user_image && header_username) {
-            user_image.src=avtURI
+            user_image.src = uservat
             header_username.innerHTML = username
         }
         

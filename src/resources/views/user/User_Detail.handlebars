@@ -132,10 +132,12 @@
     
 
     if (user_details_username && userdetails_image && user_details_username2 && userDetails_gmail && account_gender && userDetails_dayat) {
-        userdetails_image.src=avtURI
+        const uservat ="../../../public/image/avatar/"+avtURI 
+        
+        userdetails_image.src=uservat
         userDetails_dayat.innerHTML = createAt
         account_gender.innerHTML = gender
-        userdetails_image2.src=avtURI
+        userdetails_image2.src=uservat
         userDetails_gmail.innerHTML = gmail
         user_details_username.innerHTML = username
         user_details_username2.innerHTML = fullname

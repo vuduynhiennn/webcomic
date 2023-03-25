@@ -32,9 +32,16 @@ const chapterstorage = multer.diskStorage({
         conToDb.query(sql, (err, result) => {
             if (err) console.log(err)
             conToDb.end()
-            const id = result[0].id +1
-            const idname ='./src/public/image/chapter/'+ id
-            res(null,idname)
+            
+            if(!result[0]){
+                res(null,'./src/public/image/chapter/1')
+            }else{
+                let id = result[0].id+1
+                const idname ='./src/public/image/chapter/'+ id
+                console.log(idname)
+                res(null,idname)
+                
+            }
         })
     },
     filename:(req,file,res)=>{

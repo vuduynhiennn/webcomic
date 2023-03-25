@@ -64,7 +64,7 @@
                     {{/if}}
 
                     <div class="row main-page account">
-                        <form method="post" class="user-page__account " action="/updateUserInforbasic">
+                        <form method="post" class="user-page__account " action="/updateUserInforbasic" enctype="multipart/form-data">
                             <div class="inf info-name">
                                 <p>Họ Và tên:</p>
                                 <input name="new_fullname" class="user-input" type="text">
@@ -77,7 +77,7 @@
                             <div class="inf info-avatar">
                                 <p>Avatar:</p>
                                 <div>
-                                    <img class="account_image" id="avatar-upload" src="/public/image/avatar.jpg" alt="">
+                                    <img class="account_image" id="avatar-upload" src="" alt="">
                                 </div>
                                 <input name="new_avatar" type="file" id="changeavt">
                             </div>
@@ -115,13 +115,15 @@
             const username = parseCoookie.username
             const gmail = parseCoookie.gmail || "vui lòng cập nhật email"
 
+            const uservat ="../../../public/image/avatar/"+avtURI 
+
             const account_image = document.querySelector(".account_image")
             const account_image2 = document.querySelector(".account_image2")
             const account_username = document.querySelector(".account_username")
 
             if (account_image && account_image2 && account_username) {
-                account_image.src=avtURI
-                account_image2.src=avtURI
+                account_image.src=uservat
+                account_image2.src=uservat
                 account_username.innerHTML = username
             }
         

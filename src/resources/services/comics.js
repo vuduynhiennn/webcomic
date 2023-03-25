@@ -74,6 +74,12 @@ const comic = {
             return res.render("admin_commic", { isLoggedIn: true,comics:result})
         })
     },
+    chapter:(req, res) => {
+        
+            res.render("chapter",{ cookies: true ,chapter:req.params.id})
+            
+        
+    }
 }
 
 module.exports = comic
