@@ -270,7 +270,8 @@
     margin: 20px;
 }
 
-.first-form_account {
+.first-form_account,
+.second-form_account {
     padding-bottom: 2rem;
     width: 100%;
     border-bottom: 1px solid white;
@@ -404,11 +405,14 @@
     border-bottom: 1px solid orange;
     height: 70px;
 }
+.followcomic-list__item > .followitem-comic{
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+}
 
 .followcomic-list__item > .followitem-comic >img{
     width: 70px;
-    height: 70px;
-    object-fit: cover;
     
 }
 

@@ -65,37 +65,19 @@
                                 <div class="l-3">Chap mới nhất</div>
                             </div>
                             <div class="followcomic-list">
+                               
+                                {{#each listfollow}}
                                 <div class="followcomic-list__item row no-gutters">
                                     <div class="followitem-comic col l-2">
-                                        <img src="/public/image/comic.jpg" alt="">
+                                        <img src="/public/image/comic/{{this.image}}" alt="">
                                     </div>
-                                    <div class="item-info__name l-7"><a href="">Vân trungádasdasdassad hoa</a></div>
+                                    <div class="item-info__name l-7"><a href="/commic/{{this.id}}">{{this.name}}</a></div>
                                     <div class="followitem-info__status l-3">
-                                      <p><a href="">Chap: 112</a></p>
-                                      <p>22/22/2222</p>
+                                      <p><a href="">máaaaaaaaaaaaaaaaaaaaaaaa</a></p>
+                                      <p>chịu</p>
                                     </div>
                                 </div>
-                                <div class="followcomic-list__item row no-gutters">
-                                    <div class="followitem-comic col l-2">
-                                        <img src="/public/image/comic.jpg" alt="">
-                                    </div>
-                                    <div class="item-info__name l-7"><a href="">Vân trungádasdasdassad hoa</a></div>
-                                    <div class="followitem-info__status l-3">
-                                      <p><a href="">Chap: 112</a></p>
-                                      <p>22/22/2222</p>
-                                    </div>
-                                </div>
-                                <div class="followcomic-list__item row no-gutters">
-                                    <div class="followitem-comic col l-2">
-                                        <img src="/public/image/comic.jpg" alt="">
-                                    </div>
-                                    <div class="item-info__name l-7"><a href="">Vân trungádasdasdassad hoa</a></div>
-                                    <div class="followitem-info__status l-3">
-                                      <p><a href="">Chap: 112</a></p>
-                                      <p>22/22/2222</p>
-                                    </div>
-                                </div>
-                                
+                                {{/each}}
                             </div>
                         </div>
                                                     

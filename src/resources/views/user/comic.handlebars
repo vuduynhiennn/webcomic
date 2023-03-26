@@ -48,9 +48,9 @@
                             </div>
                             <p>{{comics.views}}</p>
                         </div>
-                        <div class="comic-detail__follow">
-                            <button class="comic-button follow">Theo dõi</button>
-                        </div>
+                        <form method="post" action="/commic/followcomic" class="comic-detail__follow">
+                            <button value="{{comics.id}}" name="comicid" class="comic-button follow">Theo dõi</button>
+                        </form>
                         <div class="comic-detail__read">
                             <button class="comic-button firstchapter">Đọc từ đầu</button>
                             <button class="comic-button lastchapter">Đọc mới nhất</button>
@@ -88,7 +88,7 @@
                     {{#each chapters}}
                     <div class="chapter-detail__list">
                         <div class="chapter">
-                            <a href="/commic/chapter/{{this.id}}">{{this.name}}</a>
+                            <a href="/commic/chapter/{{this.id}}">{{this.chap}}</a>
                         </div>
                         <div class="date-update">
                             <span>{{this.uploadTime}}</span>

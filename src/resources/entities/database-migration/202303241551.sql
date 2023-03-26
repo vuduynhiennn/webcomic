@@ -17,5 +17,10 @@ CREATE TABLE `Chapters` (
   `imagenumber` int
 );
 
+CREATE TABLE `UserFollowingComics` (
+  `userid` int FOREIGN KEY REFERENCES `users` (`userid`),
+  `comicid` int FOREIGN KEY REFERENCES `Comics`(`id`)
+);
+
 
 -- SELECT * FROM chapters WHERE id=(SELECT max(id) FROM chapters WHERE comicid=3)

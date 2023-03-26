@@ -5,8 +5,31 @@
 
 .footer--container{
     padding-top: 10px;
+    justify-content: center;
 }
 
+.footer--container > .Texteds{
+    margin: 25px 0px;
+    color: red;
+    text-align: center;
+    font-size: 51px;
+    animation: reminder 2s linear infinite;;
+}
+
+@keyframes reminder{
+    0% {
+        font-size: 51px;
+        text-shadow: 0px 0px 25px red;
+    }
+    50%{
+        font-size: 51px;
+        text-shadow: 0px 0px 100px yellow;
+    }
+    100%{
+        font-size: 51px;
+        text-shadow: 0px 0px 25px red;
+    }
+}
 .footer--logo{
     display: flex;
     margin-bottom: 30px;

@@ -430,23 +430,19 @@
     overflow: hidden;
 }
 
-.member--info__leve{
+/* .member--info__leve{
     width: 35px;
     height: 18px;
     border-radius: 3px;
     text-align: center;
     background-color: #bebebe;
     position: relative;
-}
-
-.leve5,.leve6,.leve7{
-    border: 1px solid red;
-    color: red;
-}
+} */
 
 .member--info__leve >p{
-    font-size: 10px;
+    font-size: 15px;
     line-height: 18px;
+    color: red;
 }
 
 .progress{

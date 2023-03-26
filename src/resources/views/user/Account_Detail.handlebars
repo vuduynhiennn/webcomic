@@ -64,7 +64,7 @@
                     {{/if}}
 
                     <div class="row main-page account">
-                        <form method="post" class="user-page__account " action="/updateUserInforbasic" enctype="multipart/form-data">
+                        <form method="post" class="user-page__account " action="/updateUserInforbasic" >
                             <div class="inf info-name">
                                 <p>Họ Và tên:</p>
                                 <input name="new_fullname" class="user-input" type="text">
@@ -73,35 +73,41 @@
                                 <p>Giới Tính:</p>
                                 <input name="new_gender" class="user-input" type="text">
                             </div>
-
-                            <div class="inf info-avatar">
-                                <p>Avatar:</p>
-                                <div>
-                                    <img class="account_image" id="avatar-upload" src="" alt="">
-                                </div>
-                                <input name="new_avatar" type="file" id="changeavt">
+                             <div class="account-change">
+                                    <button class="button-update">Cập nhật thông tin</button>
                             </div>
-                            <div class="account-change">
-                                <button class="button-update">Cập nhật thông tin</button>
-                            </div>
-
 
                         </form>
                     <div class="first-form_account"></div>
                     <div class="row main-page account"> 
-                        <form action="/updateUserinforemail"  method="POST" action="" class="user-page__account">
-                            <div class="inf info-gmail">
-                                <p>Email:</p>
-                                <input name="new_email" class="user-input" type="text">
-                            </div>
+                            <form method="POST" action="/updateUserinforavatar" enctype="multipart/form-data"  class="user-page__account">
+                                <div class="inf info-avatar">
+                                    <p>Avatar:</p>
+                                    <div>
+                                        <img class="account_image" id="avatar-upload" src="" alt="">
+                                    </div>
+                                    <input name="userid" value="{{userid}}" type="hidden">
+                                    <input name="new_avatar" type="file" id="changeavt">
+                                </div>
+                                <div class="account-change">
+                                    <button class="button-update">Cập nhật Avatar</button>
+                                </div>
+                            </form>
+                        </div>
 
-                            <div class="account-change">
-                            <button class="button-update">Cập nhật EMAIL</button>
-                            </div>
-                        </form>
-                    </div>
+                    <div class="second-form_account"></div>
+                    <div class="row main-page account"> 
+                            <form action="/updateUserinforemail"  method="POST" action="" class="user-page__account">
+                                <div class="inf info-gmail">
+                                    <p>Email:</p>
+                                    <input name="new_email" class="user-input" type="text">
+                                </div>
 
-                                      
+                                <div class="account-change">
+                                <button class="button-update">Cập nhật EMAIL</button>
+                                </div>
+                            </form>
+                        </div>         
                     </div>
                 </div>
             </div>

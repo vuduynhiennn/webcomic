@@ -9,7 +9,7 @@
                 <a href=""><i class="fa-solid fa-caret-right"></i></a>
             </div>
             <div class="chapter--header__list">
-                <div class="chapter--header__item">
+                {{!-- <div class="chapter--header__item">
                     <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg" alt="">
                 </div>
                 <div class="chapter--header__item">
@@ -68,8 +68,24 @@
                 </div>
                 <div class="chapter--header__item">
                     <img class="item" src="/public/image/chapter/{{chapter}}/2.jpg0" alt="">
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
 {{>footer}}
+<script>
+    const imgnumber = {{numberimg}}
+    const chapter = {{chapter}}
+    const list = document.querySelector(".chapter--header__list")
+   
+    if(imgnumber){
+       var listimg=[]
+        for(let i=1; i <= imgnumber; i++){
+        listimg +=`<div class="chapter--header__item">
+                        <img class="item" src="/public/image/chapter/${chapter}/${i}.png" alt="">
+                    </div>`
+        
+        }
+        list.innerHTML =listimg
+    }
+</script>

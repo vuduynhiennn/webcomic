@@ -224,30 +224,6 @@ const userServices = {
         const {new_fullname, new_gender, currentId} = req.body
 
         let genderMessage
-        const new_avt = req.file.filename
-        if (new_avt) {
-            // const new_avt = req.file.filename
-            const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
-            const mysql = require("mysql");
-
-            const conToDb = mysql.createConnection({
-            host: HOST || "localhost",
-            user: USER || "sa",
-            password: PASSWORD || "123123",
-            database: DATABASE || "QUANLYNHANSU"
-            })
-
-            conToDb.connect((err) => {
-            if (err) throw err;
-            console.log("Connected to mysql")
-            })
-            
-            const sql = `UPDATE users SET avatar='${new_avt}' WHERE userid="${currentId}"`
-            conToDb.query(sql , (err, result) => {
-            if (err) console.log(err)
-            conToDb.end()
-            })
-        }
 
         if (new_fullname) {
              // create connection
@@ -306,6 +282,33 @@ const userServices = {
         let finalMessage = genderMessage || " "
         return res.render("Account_Detail", {message: `${finalMessage} cập nhật thành công`, cookies: true})
 
+    },
+    updateUserInforavatr:(req,res) =>{
+        const {currentId} = req.body
+        const new_avt = req.file.filename
+        const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
+        const mysql = require("mysql");
+
+        const conToDb = mysql.createConnection({
+            host: HOST || "localhost",
+            user: USER || "sa",
+            password: PASSWORD || "123123",
+            database: DATABASE || "QUANLYNHANSU"
+        })
+
+        conToDb.connect((err) => {
+            if (err) throw err;
+            console.log("Connected to mysql")
+        })
+            
+        const sql = `UPDATE users SET avatar='${new_avt}' WHERE userid="${currentId}"`
+        conToDb.query(sql , (err, result) => {
+            if (err) console.log(err)
+            conToDb.end()
+        })
+        
+        return res.render("Account_Detail", {message: `cập nhật avatar thành công`, cookies: true})
+        
     },
     // for change email
     updateUserinforemail: (req, res) => {
@@ -432,6 +435,33 @@ const userServices = {
                 return res.render("changepassword", { message: "Mật khẩu không đúng", cookies: true})
             }
         })
+    },
+    getexp:(req, res,next) => {//nay la tang exp
+        const userid = req.body.currentId
+        const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
+        if(userid){
+            const mysql = require("mysql");
+            const conToDb = mysql.createConnection({
+                host: HOST || "localhost",
+                user: USER || "sa",
+                password: PASSWORD || "123123",
+                database: DATABASE || "QUANLYNHANSU"
+            })
+            
+            conToDb.connect((err) => {
+                if (err) throw err;
+                console.log("Connected to mysql")
+            })
+            // connected to mysql
+            //query  
+            const sql = `UPDATE users SET Point = Point + 1 WHERE userid=${userid}`
+            conToDb.query(sql, (err, result) => {
+                if (err) return res.json("err")
+                next()
+            })
+        }else{
+            next()
+        }
     }
 }
 
