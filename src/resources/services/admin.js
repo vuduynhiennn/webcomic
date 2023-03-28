@@ -113,7 +113,7 @@ const adminServices = {
         })
     },
     addchapter:(req, res,next) => { 
-        const {comic, name,number} = req.body
+        const {comic, name,number,style} = req.body
 
             // create connection to mysql
         const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
@@ -131,7 +131,7 @@ const adminServices = {
             console.log("Connected to mysql")
         })
              // connected to mysql successfully
-        const sql = `INSERT INTO chapters VALUES (NULL, '${comic}','', '${name}', NULL,${number});`
+        const sql = `INSERT INTO chapters VALUES (NULL, '${comic}','', '${name}', NULL,${number},${style});`
         conToDb.query(sql, (err, result) => {
             if (err) console.log(err)
             conToDb.end()

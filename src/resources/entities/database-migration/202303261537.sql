@@ -21,3 +21,13 @@ CREATE TABLE `history` (
 )
 
 ALTER TABLE `chapters` CHANGE `name` `chap` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+ALTER TABLE `chapters` ADD `Style` INT(1) NOT NULL ;
+
+CREATE TABLE `Comments` (
+  `id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `parent_id` int,
+  `user_id` int,
+  `content` varchar(255),
+  `comicid` int,
+  `timestampe` datetime DEFAULT CURRENT_TIMESTAMP
+);

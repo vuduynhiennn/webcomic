@@ -48,9 +48,16 @@
                             </div>
                             <p>{{comics.views}}</p>
                         </div>
+                        {{#if follow}}
+                        <form method="post" action="/commic/unfollowcomic" class="comic-detail__follow unfollow">
+                            <button value="{{comics.id}}" name="comicid" class="comic-button follow">Hủy Theo dõi</button>
+                        </form>
+                        {{else}}
+                        
                         <form method="post" action="/commic/followcomic" class="comic-detail__follow">
                             <button value="{{comics.id}}" name="comicid" class="comic-button follow">Theo dõi</button>
                         </form>
+                        {{/if}}
                         <div class="comic-detail__read">
                             <button class="comic-button firstchapter">Đọc từ đầu</button>
                             <button class="comic-button lastchapter">Đọc mới nhất</button>
@@ -100,6 +107,31 @@
             </div>
         </div>
         <div class="comic-comment">
-            dưới này là commenttttttttttttttttttttttttttttttttt
+           <div class="comment-form">
+                <form action="/commic/comment" method="post">
+                    <textarea name="comment" wrap="hard"></textarea>
+                    <input type="hidden" name="commicid" value="{{comics.id}}">
+                   <div>
+                     <button>Gửi</button>
+                   </div>
+                </form>
+           </div>
+           <div class="comment-list">
+                {{#each comment}}
+                <div class="comment-item">
+                    <div class="comment-item__avt">
+                        <img src="../../../public/image/avatar/{{this.avatar}}" alt="">
+                    </div>
+                    <div class="comment-item__content">
+                        <div class="content_name">
+                            <p>{{this.fullname}} <span>{{this.timestampe}}</span></p>
+                        </div>
+                        <div class="content_cmt">
+                            <p>{{this.content}}</p>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+           </div>
         </div>
     </div>

@@ -23,7 +23,7 @@ const userRoutes = (app) => {
 
   // app.get('/',userAuth,comicServices.allcomic)
   app.get('/',checkauth,comicServices.allcomic)
-  router.get("/commic/:id", comicServices.showcomic)
+  router.get("/commic/:id",checkauth, comicServices.showcomic)
 
   router.get("/login", (req, res) => { res.render("login") } )
   router.get("/register", (req, res) => { res.render("register") })

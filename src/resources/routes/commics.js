@@ -12,6 +12,8 @@ const commicsRoutes = (app) => {
     router.get("/chapter/:id",checkauth,user.getexp, comics.chapter)
 
     router.post("/followcomic",userAuth,comics.followcomic)
+    router.post("/unfollowcomic",userAuth,comics.unfollowcomic)
+    router.post("/comment",userAuth,comics.comment)
 
     return app.use("/commic", router)
 }

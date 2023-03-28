@@ -81,6 +81,14 @@
 
 }
 
+.comic-detail__follow.unfollow > .follow{
+    background-color: rgb(243, 59, 49);
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+
+}
+
 .comic-detail__read > button{
     background-color: rgb(244, 173, 41);
     width: 120px;
@@ -175,4 +183,64 @@
 .date-update{
     flex: 1;
     text-align: center;
+}
+.comment-form > form {
+    width: 700px;
+}
+
+.comment-form > form >textarea{
+    width: 100%;
+    height: 80px;
+    display: block;
+    padding: 10px;
+    margin: 20px 0px;
+}
+.comment-form > form >div{
+    text-align: end;
+}
+.comment-form > form >div>button{
+    width: 50px;
+    height: 50px;
+}
+
+.comment-list{
+    width: 700px;
+    margin-top: 20px;
+}
+
+.comment-item{
+    display: flex;
+    padding: 20px 0px;
+    border-top: 3px dotted yellow;
+}
+
+.comment-item > .comment-item__avt{
+    width: 50px;
+    height: 50px;
+    border-radius: 100em;
+    overflow: hidden;
+}
+
+.comment-item > .comment-item__avt>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.comment-item > .comment-item__content{
+    flex: 1;
+    padding: 0px 20px;
+}
+
+.content_name{
+    font-size: 20px;
+    color: red;
+}
+.content_name>p>span{
+    font-size: 10px;
+    color: #888;
+}
+
+.content_cmt{
+    font-size: 15px;
+    color: white;
 }

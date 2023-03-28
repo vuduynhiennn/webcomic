@@ -9,66 +9,7 @@
                 <a href=""><i class="fa-solid fa-caret-right"></i></a>
             </div>
             <div class="chapter--header__list">
-                {{!-- <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/2.jpg" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/3.jpg" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/4.jpg" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/5.jpg" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/6.jpg" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/7.jpg" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/8.jpg" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/9.jpg" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg0" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg1" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg2" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg3" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg4" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg5" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg6" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg7" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg8" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/1.jpg9" alt="">
-                </div>
-                <div class="chapter--header__item">
-                    <img class="item" src="/public/image/chapter/{{chapter}}/2.jpg0" alt="">
-                </div> --}}
+
             </div>
         </div>
     </div>
@@ -76,16 +17,32 @@
 <script>
     const imgnumber = {{numberimg}}
     const chapter = {{chapter}}
+    var stylenumber ={{style}}
     const list = document.querySelector(".chapter--header__list")
-   
-    if(imgnumber){
-       var listimg=[]
-        for(let i=1; i <= imgnumber; i++){
-        listimg +=`<div class="chapter--header__item">
-                        <img class="item" src="/public/image/chapter/${chapter}/${i}.png" alt="">
-                    </div>`
-        
+    if(stylenumber==1) {
+        const styleimg="jpg"
+        if(imgnumber){
+        var listimg=[]
+            for(let i=1; i <= imgnumber; i++){
+                listimg +=`<div class="chapter--header__item">
+                                <img class="item" src="/public/image/chapter/${chapter}/${i}.${styleimg}" alt="">
+                            </div>`
+                
+            }
+            list.innerHTML =listimg
         }
-        list.innerHTML =listimg
+    }else if (stylenumber==2) {
+        const styleimg="png"
+        if(imgnumber){
+            var listimg=[]
+            for(let i=1; i <= imgnumber; i++){
+                listimg +=`<div class="chapter--header__item">
+                                <img class="item" src="/public/image/chapter/${chapter}/${i}.${styleimg}" alt="">
+                            </div>`
+                
+                }
+            list.innerHTML =listimg
+        }
     }
+    
 </script>
