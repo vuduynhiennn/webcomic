@@ -1,59 +1,7 @@
 const express = require("express")
 const router = express.Router()
-
-const multer = require("multer")
-
-const comicstorage = multer.diskStorage({
-    destination:(req,file,res)=>{
-        res(null,'./src/public/image/comic')
-    },
-    filename:(req,file,res)=>{
-        res(null,file.originalname)
-    }
-})
-const chapterstorage = multer.diskStorage({
-    destination:(req,file,res)=>{
-        const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
-        const mysql = require("mysql");
-
-        const conToDb = mysql.createConnection({
-            host: HOST || "localhost",
-            user: USER || "sa",
-            password: PASSWORD || "123123",
-            database: DATABASE || "QUANLYNHANSU"
-        })
-    
-        conToDb.connect((err) => {
-            if (err) throw err;
-            console.log("Connected to mysql")
-        })
-             // connected to mysql successfully
-        const sql = `SELECT * FROM chapters WHERE id=(SELECT max(id) FROM chapters) `
-        conToDb.query(sql, (err, result) => {
-            if (err) console.log(err)
-            conToDb.end()
-            
-            if(!result[0]){
-                res(null,'./src/public/image/chapter/1')
-            }else{
-                let id = result[0].id+1
-                const idname ='./src/public/image/chapter/'+ id
-                console.log(idname)
-                res(null,idname)
-                
-            }
-        })
-    },
-    filename:(req,file,res)=>{
-        res(null,file.originalname)
-    }
-})
-
-const chapterupload = multer({storage:chapterstorage})
-const comicupload =multer({storage:comicstorage})
-
-
-//////////////////////////////////////////////////
+const comicupload = require("../middlewares/upload/Admin_comic")
+const chapterupload = require("../middlewares/upload/Admin_chapter")
 const adminAuth = require("../middlewares/adminAuth")
 const comics = require("../services/comics")
 const adminController = require("../controllers/admin")
@@ -75,7 +23,7 @@ const adminRoutes = (app) => {
     // services
     router.post("/login", adminController.login)
 
-    //add comic
+    //add comic/chapter
     router.post("/addnewcomic",comicupload.single("image"),adminController.addcomic)
     router.post("/addnewchapter",chapterupload.array("image"),adminController.addchapter,adminController.addfolder)
    

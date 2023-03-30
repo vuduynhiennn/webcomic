@@ -11,16 +11,22 @@ const checkauth = (req, res, next) => {
          const parseToken = JSON.parse(tokenFromClient.split("=")[1]).token
          
          jwt.verify(parseToken, process.env.SECRET, (err, decoded) => {
-            if (err) console.log(err) 
+            if (err){
+               console.log(err) 
+               next()
+            }
             const userStatus = require("../sessions/userStatus")
-            if ( userStatus.userid =! decoded ) next
+            if ( userStatus.userid =! decoded ) next()
             req.body.currentId = decoded
             next()   
          })
    
       } else {
          jwt.verify(JSON.parse(decodeURIComponent(token)), process.env.SECRET, (err, decoded) => {
-            if (err) console.log(err)
+            if (err){
+               console.log(err)
+               next()
+            }
             next()   
          })
       }

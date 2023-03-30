@@ -4,27 +4,16 @@ const router = express.Router();
 const userAuth = require("../middlewares/userAuth");
 const checkauth = require("../middlewares/checkauth");
 const userServices = require("../services/user")
-const comicServices = require("../services/comics")
+const comicServices = require("../services/comics") 
 const multer = require("multer");
 const { Cookie } = require("express-session");
+const userupload = require("../middlewares/upload/User_avatar");
 
-const usertorage = multer.diskStorage({
-    destination:(req,file,res)=>{
-        res(null,'./src/public/image/avatar')
-    },
-    filename:(req,file,res)=>{
-      res(null,file.originalname)
-    }
-})
-const userupload =multer({storage:usertorage})
 
 
 const userRoutes = (app) => {
 
-  // app.get('/',userAuth,comicServices.allcomic)
-  app.get('/',checkauth,comicServices.allcomic)
-  router.get("/commic/:id",checkauth, comicServices.showcomic)
-
+  router.get('/',checkauth,comicServices.allcomic)
   router.get("/login", (req, res) => { res.render("login") } )
   router.get("/register", (req, res) => { res.render("register") })
   router.get("/authEmail", (req, res) => res.render("authEmail"))
@@ -38,6 +27,7 @@ const userRoutes = (app) => {
       res.redirect('/')
   })
 
+  
 // routing  
   router.post("/change_password", userAuth, userServices.change_password)
   router.post("/updateUserInforbasic",userAuth, userServices.updateUserInforbasic)
