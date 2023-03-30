@@ -1,6 +1,10 @@
+html{
+    scroll-behavior: smooth;
+}
 .body{
     margin-top: 20px;
     background-color: black;
+    scroll-behavior: smooth;
 }
 
 .body--container{

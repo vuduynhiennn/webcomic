@@ -129,7 +129,6 @@ const comic = {
     showcomic: (req, res) => {
         const cookies = req.headers.cookie 
         const {currentId} = req.body
-        console.log(currentId)
         const { HOST, USER, PASSWORD, DATABASE } = require("dotenv").config()["parsed"]
         const mysql = require("mysql");
 
@@ -209,7 +208,6 @@ const comic = {
         conToDb.connect((err) => {
             if (err) throw err;
             console.log("Connected to mysql")
-            console.log(req.params.id)
         })
              // connected to mysql successfully
         const sql = `SELECT * FROM chapters where id=${req.params.id};`

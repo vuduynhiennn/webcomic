@@ -84,6 +84,11 @@ document.getElementById("nextleft").onclick = function(){
 }
 
 
+document.getElementById("dashboad").onclick =function(){
+    window.scrollTo(0,0)
+}
+
+
 
 
 
