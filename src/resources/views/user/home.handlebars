@@ -132,6 +132,8 @@
                             </div>
                     </div>
                     {{/if}}
+
+                    {{#if cookies}}
                     <div class="pullright--history">
                         <div class="pullright--top">
                             <p>Lịch sử đọc truyện</p>
@@ -156,6 +158,7 @@
                             {{/each}}
                         </div>  
                     </div>
+                    {{/if}}
                     <div class="pullright--topcomic">
                         <div class="topcomic--header">
                             <div class="topcomic--month">
@@ -439,7 +442,7 @@
 </div>
 <script>
     const lissttopcomic=document.querySelectorAll(".topcomicweb")
-    for(let i=0;i<7;i++){
+    for(let i=0;i<10;i++){
         lissttopcomic[i].innerHTML=i+1
     }
 </script>

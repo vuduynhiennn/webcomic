@@ -35,7 +35,7 @@ const comic = {
                             if (err) console.log(err)
 
                             conToDb.end() 
-                            return res.render('home', { cookies: cookies,comics:result,followcomic:false,topcomic:resulttopcomic,bannercomic:resultreviewcomic})
+                            return res.render('home', { cookies: cookies,comics:result,followcomic:false,topcomic:resulttopcomic,topuser:resulttopuser,bannercomic:resultreviewcomic})
                         })
                     })
                 })
@@ -155,17 +155,21 @@ const comic = {
                 conToDb.query(sqlcmt, (err, resulcmt) => {
                     if (err) console.log(err)
 
-                    const sqlflc =`SELECT * FROM userfollowingcomics WHERE comicid=${req.params.id} and userid=${currentId};`
-                    conToDb.query(sqlflc, (err, resuilfollow) => {
-                        if (err) console.log(err)   
+                    if(currentId){
+                        const sqlflc =`SELECT * FROM userfollowingcomics WHERE comicid=${req.params.id} and userid=${currentId};`
+                        conToDb.query(sqlflc, (err, resuilfollow) => {
+                            if (err) console.log(err)   
 
-                        conToDb.end() 
-                        if(resuilfollow[0]){
-                            return res.render('comic', { cookies: cookies,comics: result[0],chapters: resultchap,comment:resulcmt,follow:true})
-                        }else{
-                            return res.render('comic', { cookies: cookies,comics: result[0],chapters: resultchap,comment:resulcmt,follow:false})
-                        }
-                    })
+                            conToDb.end() 
+                            if(resuilfollow[0]){
+                                return res.render('comic', { cookies: cookies,comics: result[0],chapters: resultchap,comment:resulcmt,follow:true})
+                            }else{
+                                return res.render('comic', { cookies: cookies,comics: result[0],chapters: resultchap,comment:resulcmt,follow:false})
+                            }
+                        })
+                    }else{
+                        return res.render('comic', { cookies: cookies,comics: result[0],chapters: resultchap,comment:resulcmt,follow:false})
+                    }
                 })
             })
         })
