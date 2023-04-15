@@ -63,9 +63,24 @@
                         <div class="error-message">{{ message }}</div>
                     {{/if}}
 
+                    {{!-- update user image  --}}
+                    <div class="row main-page account">
+                        <form method="post" class="user-page__account" action="/updateAvatar" enctype="multipart/form-data">
+                            <div class="inf info-name">
+                                <p> Thay đổi avatar</p>
+                                <input name="avatar" class="user-input" type="file">
+                            </div>
+                            <div class="account-change">
+                                <button class="button-update">Cập nhật</button>
+                             </div> 
+                        </form>
+                    </div>
+                    {{!-- update user infor  --}}
                     <div class="row main-page account">
 
                         <form method="post" class="user-page__account" action="/updateUserInforbasic">
+
+
                             <div class="inf info-name">
                                 <p>Họ Và tên:</p>
                                 <input name="new_fullname" class="user-input" type="text">
@@ -75,19 +90,20 @@
                                 <input name="new_gender" class="user-input" type="text">
                             </div>
 
-                            <div class="inf info-avatar">
-                                <p>Avatar:</p>
-                                <div>
-                                    <img class="account_image" id="avatar-upload" src="/public/image/avatar.jpg" alt="">
-                                </div>
-                                <input name="new_avatar" type="file" id="changeavt">
-                            </div>
+                                {{!-- <div class="inf info-avatar">
+                                    <p>Avatar:</p>
+                                    <div>
+                                        <img class="account_image" id="avatar-upload" src="/public/image/avatar.jpg" alt="">
+                                    </div>
+                                    <input name="new_avatar" type="file" id="changeavt">
+                                </div> --}}
 
                             <div class="account-change">
                                 <button class="button-update">Cập nhật thông tin</button>
                             </div>
 
                         </form>
+
 
                     <div class="first-form_account"></div>
                     <div class="row main-page account"> 
@@ -103,7 +119,8 @@
                         </form>
                     </div>
 
-                                      
+                    
+
                     </div>
                 </div>
             </div>
@@ -121,8 +138,7 @@
             const account_image2 = document.querySelector(".account_image2")
             const account_username = document.querySelector(".account_username")
 
-            if (account_image && account_image2 && account_username) {
-                account_image.src=avtURI
+            if (account_image2 && account_username) {
                 account_image2.src=avtURI
                 account_username.innerHTML = username
             }

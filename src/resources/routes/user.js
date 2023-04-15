@@ -4,6 +4,24 @@ const router = express.Router();
 const userAuth = require("../middlewares/userAuth");
 const userServices = require("../services/user")
 
+const userStatus = require("../sessions/userStatus")
+console.log(userStatus)
+
+//setup for storage
+const multer  = require('multer')
+const fileStorageEngine = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './src/public/image/user_avatars')
+    },
+    filename: (req, file, cb) => {
+        let extArray = file.mimetype.split("/");
+        let extension = extArray[extArray.length - 1];
+        cb(null, `vuduynhien.png`)
+    } 
+})
+const upload = multer({ storage: fileStorageEngine })
+
+
 const userRoutes = (app) => {
   // routes for render views
   app.get('/', (req, res) => {
@@ -37,6 +55,8 @@ const userRoutes = (app) => {
   router.post("/login", userServices.login)
   router.post("/forgetPassword", userServices.forgetPassword)
   router.post("/forgetPassword/code", userServices.forgetPasswordCode)
+
+  router.post("/updateAvatar", userAuth, upload.single("avatar"), userServices.updateAvatar)
   return app.use("/", router)
 }
 module.exports = userRoutes

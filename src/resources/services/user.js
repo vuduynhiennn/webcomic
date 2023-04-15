@@ -140,15 +140,15 @@ const userServices = {
 
             const userStatus = require("../sessions/userStatus")
             userStatus.userid = identifier
-
+            
             res.cookie("credential", JSON.stringify(credential))
             
             return res.redirect("/")
         })
     },
-     logout: (req, res) => {
-        req.render("home", {cookies: false})
-     },
+    logout: (req, res) => {
+    req.render("home", {cookies: false})
+    },
     forgetPassword: (req, res) => {
         const { email } = req.body
         if (!email) {return res.render("forgetPass", { message: "Vui lòng nhập email vào"})}
@@ -407,6 +407,11 @@ const userServices = {
                 return res.render("changepassword", { message: "Mật khẩu không đúng", cookies: true})
             }
         })
+    }
+    ,
+    updateAvatar: (req, res) => {
+
+        console.log(req.file)
     }
 }
 

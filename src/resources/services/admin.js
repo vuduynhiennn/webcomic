@@ -43,8 +43,7 @@ const adminServices = {
     },
     add_tags: (req, res) => {
         const { tag_names } = req.body
-        if (!tag_names) { console.log("không thấy tags name"); return }
-        
+        if (!tag_names) { console.log("không thấy tags name"); return }       
     }   
 }
 

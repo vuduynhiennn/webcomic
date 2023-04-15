@@ -19,6 +19,7 @@ const config = (app) => {
 
   // set static public folder
   app.use("/public", express.static(path.join(__dirname, "../public")));
+  app.use("/userAvatar", express.static(path.join(__dirname, "../userAvatar")));
 
   // setup session and cookie storage
   const session = require("express-session");

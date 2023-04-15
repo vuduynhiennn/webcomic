@@ -9,6 +9,6 @@ const commicsRoutes = (app) => {
         res.render("login")
     })
     
-    return app.use("/commics", router)
+    return app.use("/comics", router)
 }
 module.exports = commicsRoutes

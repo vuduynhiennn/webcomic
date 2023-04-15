@@ -2,7 +2,6 @@ const express = require("express")
 const router = express.Router()
 
 const adminAuth = require("../middlewares/adminAuth")
-
 const adminController = require("../controllers/admin")
 
 const adminRoutes = (app) => {
@@ -19,8 +18,6 @@ const adminRoutes = (app) => {
 
     router.post("/add_comic", adminAuth, adminController.add_comic)
     router.post("/add_tags", adminAuth, adminController.add_tags)
-
-
 
     // return routes
     return app.use("/admin", router)
