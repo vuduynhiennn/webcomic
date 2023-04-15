@@ -30,6 +30,7 @@ const userRoutes = (app) => {
   router.get("/account", (req, res) => res.render("Account_Detail",  { cookies: true }))
   router.get("/followcomic", userAuth,  (req, res) => res.render("followcomic_Detail", { cookies: true }))
   router.get("/changepassword", userAuth, (req, res) => res.render("changepassword", { cookies: true}))
+
   router.get("/logout", (req, res) => {
       res.clearCookie("credential")
       res.redirect('/')

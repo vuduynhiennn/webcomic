@@ -220,7 +220,11 @@ const userServices = {
 
     },
 
+<<<<<<< HEAD
     updateUserInforbasic: (req, res) => {
+=======
+    updateUserInforbasic: async (req, res) => {
+>>>>>>> d24d298 (I dont know)
         const {new_fullname, new_gender, currentId} = req.body
 
         let genderMessage
@@ -268,7 +272,7 @@ const userServices = {
              // connected
              // query
             const sql = `UPDATE users SET fullname="${new_fullname}" WHERE userid="${currentId}"`
-             conToDb.query(sql , (err, result) => {
+            await conToDb.query(sql , (err, result) => {
                 if (err) console.log(err)
                 conToDb.end()
              })
@@ -294,7 +298,7 @@ const userServices = {
                 // connected
                 // query
                 const sql = `UPDATE users SET gender="${new_gender}" WHERE userid="${currentId}"`
-                conToDb.query(sql , (err, result) => {
+                await conToDb.query(sql , (err, result) => {
                 if (err) console.log(err)
                 conToDb.end()
                 })

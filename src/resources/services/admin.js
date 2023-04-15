@@ -37,6 +37,7 @@ const adminServices = {
             // update admin status - admin_name
             adminStatus.admin_name = admin_name
             res.cookie("credential", JSON.stringify(admin_credential))
+<<<<<<< HEAD
             res.redirect('/admin/commic')
         })
     },
@@ -139,6 +140,19 @@ const adminServices = {
         })
     }
     
+=======
+            return res.render("admin_comic", { isLoggedIn: true })
+        })
+    },
+    add_comic: (req, res) => {
+        console.log("adding...")
+    },
+    add_tags: (req, res) => {
+        const { tag_names } = req.body
+        if (!tag_names) { console.log("không thấy tags name"); return }
+        
+    }   
+>>>>>>> d24d298 (I dont know)
 }
 
 module.exports = adminServices

@@ -65,9 +65,10 @@ const adminRoutes = (app) => {
     // render views
     router.get("/login", (req, res) => res.render("admin-login"))
     router.get("/logout", (req, res) => {
-        res.clearCookie("credential")
+        res.clearCookie("credential") // delete cookies credential
         res.redirect('/admin/login')
     })
+<<<<<<< HEAD
     router.get("/commic", adminAuth, comics.admincomic)
     router.get("/chapter/:id", (req, res) => {
         res.render("admin_chapter", { isLoggedIn: true ,comic:req.params.id})
@@ -80,6 +81,18 @@ const adminRoutes = (app) => {
     router.post("/addnewchapter",chapterupload.array("image"),adminController.addchapter,adminController.addfolder)
    
     
+=======
+    router.get("/commic", adminAuth, (req, res) => res.render("admin_comic", { isLoggedIn: true }))
+
+    // admin authorization services
+    router.post("/login", adminController.login)
+
+    router.post("/add_comic", adminAuth, adminController.add_comic)
+    router.post("/add_tags", adminAuth, adminController.add_tags)
+
+
+
+>>>>>>> d24d298 (I dont know)
     // return routes
     return app.use("/admin", router)
 }
